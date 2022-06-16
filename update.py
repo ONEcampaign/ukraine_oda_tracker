@@ -7,4 +7,3 @@ if __name__ == "__main__":
     df = build_table(raw_data)
     df.to_csv(f"{PATHS.output}/table.csv", index=False)
 
-   
