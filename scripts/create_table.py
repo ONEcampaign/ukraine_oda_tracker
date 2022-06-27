@@ -43,9 +43,6 @@ COLUMNS: list = [
     "Text for Popup (IDRC)",
     "IDRC (LCU)",
     "IDRC (USD)",
-    "Text for Popup (Diverted)",
-    "ODA Diverted (LCU)",
-    "ODA Diverted (USD)",
     "Source",
 ]
 
@@ -127,18 +124,6 @@ def _write_idrc(data: dict[str, pd.DataFrame]):
     return {country: __read_rows(df_=data_, **args) for country, data_ in data.items()}
 
 
-def _write_oda_diverted(data: dict[str, pd.DataFrame]):
-    """Write the string for the oda diverted cell"""
-
-    args = {
-        "date_col": "Date of Press Release/Source",
-        "amount_col": "ODA Diverted (USD)",
-        "text_col": "Text for Popup (Diverted)",
-    }
-
-    return {country: __read_rows(df_=data_, **args) for country, data_ in data.items()}
-
-
 def _write_cell(country_data: list) -> tuple:
 
     amount = 0
@@ -171,7 +156,6 @@ def build_table(data: dict) -> pd.DataFrame:
 
     oda_pledged = _write_oda_pledged(data)
     idrc = _write_idrc(data)
-    oda_diverted = _write_oda_diverted(data)
 
     df = pd.DataFrame()
 
@@ -179,17 +163,15 @@ def build_table(data: dict) -> pd.DataFrame:
 
         p = _write_cell(oda_pledged[donor])
         i = _write_cell(idrc[donor])
-        d = _write_cell(oda_diverted[donor])
 
         source = ""
 
-        for col in [p, i, d]:
+        for col in [p, i]:
             source += col[1]
 
         data = {
             "Cumulative ODA pledged to Ukraine (USD millions)": p[0],
             "Cumulative In-donor Refugee Costs (USD millions)": i[0],
-            "Total ODA diverted from current budget (USD millions)": d[0],
             "Source": source,
         }
 
