@@ -156,6 +156,8 @@ def _write_cell(country_data: list) -> tuple:
 
     if amount == 0:
         amount = ""
+    else:
+        amount = f"{amount:,.1f}"
 
     if text == ">>":
         text = ""
@@ -191,13 +193,28 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-    return df.sort_values(
-        by=[
-            "Cumulative ODA pledged to Ukraine (USD millions)",
-            "Cumulative In-donor Refugee Costs (USD millions)",
-            "Donor",
-        ],
-        ascending=(False, False, True),
+        df["amount1"] = df["Cumulative ODA pledged to Ukraine (USD millions)"].apply(
+            lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
+        )
+        df["amount2"] = df["Cumulative In-donor Refugee Costs (USD millions)"].apply(
+            lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
+        )
+
+    return (
+        df.sort_values(
+            by=[
+                "amount1",
+                "amount2",
+                "Donor",
+            ],
+            ascending=(False, False, True),
+        )
+        .drop(columns=["amount1", "amount2"])
+        .loc[
+            lambda d: (d["Cumulative ODA pledged to Ukraine (USD millions)"] != "")
+            | (d["Cumulative In-donor Refugee Costs (USD millions)"] != "")
+            | (d["Source"] != ""),
+        ]
     )
 
 
