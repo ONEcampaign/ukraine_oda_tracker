@@ -13,21 +13,32 @@ BASE_URL = lambda url: (
 SHEETS: dict[str, int] = {
     "Australia": 1503888521,
     "Austria": 1619789998,
+    "Belgium": 357504124,
+    "Czech Republic": 1143510242,
     "Denmark": 1266971478,
     "Canada": 0,
     "European Union": 1464051755,
     "Finland": 2123695373,
     "France": 1098311333,
+    "Germany": 410131162,
+    "Greece": 891408109,
+    "Hungary": 1163757006,
+    "Iceland": 1921544973,
     "Ireland": 1546298383,
     "Italy": 105468234,
+    "Luxembourg": 1280324309,
     "Japan": 1024177723,
     "Netherlands": 1597926940,
     "New Zealand": 956169089,
     "Norway": 1522549733,
+    "Poland": 1598785617,
     "Portugal": 961044160,
     "South Korea": 2107825452,
     "Spain": 1108322023,
     "Sweden": 82579098,
+    "Slovak Republic": 649145236,
+    "Slovenia": 1793837304,
+    "Switzerland": 2112782746,
     "United States": 626158716,
     "United Kingdom": 1664889518,
 }
@@ -180,7 +191,14 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-    return df
+    return df.sort_values(
+        by=[
+            "Cumulative ODA pledged to Ukraine (USD millions)",
+            "Cumulative In-donor Refugee Costs (USD millions)",
+            "Donor",
+        ],
+        ascending=(False, False, True),
+    )
 
 
 if __name__ == "__main__":
