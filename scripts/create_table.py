@@ -151,8 +151,8 @@ def _write_cell(country_data: list) -> tuple:
         if (row[3] is not None) and (row[0] is not None):
             source += f"{row[3]}<br>"
 
-    if source[-4:] == "<br>":
-        source = source[:-4]
+    #if source[-4:] == "<br>":
+    #    source = source[:-4]
 
     if amount == 0:
         amount = ""
