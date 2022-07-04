@@ -39,8 +39,8 @@ SHEETS: dict[str, int] = {
     "Slovak Republic": 649145236,
     "Slovenia": 1793837304,
     "Switzerland": 2112782746,
-    "United States": 626158716,
-    "United Kingdom": 1664889518,
+    "United States": 1664889518,
+    "United Kingdom": 626158716,
 }
 
 url = BASE_URL(1503888521)
