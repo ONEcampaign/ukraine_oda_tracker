@@ -92,11 +92,15 @@ def __read_rows(
         source = row["Source"] if str(row["Source"]) != "NaT" else None
         try:
             date = (
-                f"{date.strftime('%-d %B')}: " if isinstance(date, pd.Timestamp) else None
+                f"{date.strftime('%-d %B')}: "
+                if isinstance(date, pd.Timestamp)
+                else None
             )
         except ValueError:
             date = (
-                f"{date.strftime('%#d %B')}: " if isinstance(date, pd.Timestamp) else None
+                f"{date.strftime('%#d %B')}: "
+                if isinstance(date, pd.Timestamp)
+                else None
             )
 
         amount = amount if str(amount) != "nan" else None
