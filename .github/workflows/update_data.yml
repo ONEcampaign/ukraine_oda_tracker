@@ -3,6 +3,8 @@ name: Update Ukraine ODA
   schedule:
     - cron: '30 8-20 * * 1-5'
   workflow_dispatch:
+env:
+  SHEETS_API: ${{ secrets.SHEETS_API }}
 jobs:
   run-all:
     runs-on: ubuntu-latest

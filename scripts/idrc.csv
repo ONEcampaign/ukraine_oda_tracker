@@ -1,0 +1,693 @@
+﻿year,donor_code,donor,currency,value,prices,iso_code
+2013,50,Spain,usd,24.53,current,ESP
+2019,4,France,usd,1209.67,current,FRA
+2020,6,Italy,usd,228.95,current,ITA
+2012,55,Turkey,usd,110.8,current,TUR
+2013,11,Switzerland,usd,450.3,current,CHE
+2012,6,Italy,usd,246.69,current,ITA
+2018,61,Slovenia,usd,2.45,current,SVN
+2020,10,Sweden,usd,149.3,current,SWE
+2012,68,Czech Republic,usd,9.52413,current,CZE
+2014,62,Croatia,usd,3.65,current,HRV
+2015,11,Switzerland,usd,497.61,current,CHE
+2016,45,Malta,usd,5.59,current,MLT
+2012,8,Norway,usd,226.81,current,NOR
+2012,9,Portugal,usd,0.83,current,PRT
+2016,7,Netherlands,usd,433.85,current,NLD
+2021,701,Japan,usd,0.27,current,JPN
+2013,6,Italy,usd,403.6,current,ITA
+2016,576,United Arab Emirates,usd,4.68,current,ARE
+2016,21,Ireland,usd,1.07,current,IRL
+2012,2,Belgium,usd,125.75,current,BEL
+2015,12,United Kingdom,usd,390.49,current,GBR
+2019,701,Japan,usd,0.33,current,JPN
+2019,5,Germany,usd,3035.69,current,DEU
+2018,40,Greece,usd,27.92,current,GRC
+2019,83,Latvia,usd,1.06,current,LVA
+2019,68,Czech Republic,usd,6.11,current,CZE
+2013,21,Ireland,usd,0.04,current,IRL
+2018,9,Portugal,usd,9.54,current,PRT
+2014,9,Portugal,usd,0.92,current,PRT
+2019,55,Turkey,usd,11.39,current,TUR
+2013,9,Portugal,usd,1.56,current,PRT
+2020,20,Iceland,usd,5.7,current,ISL
+2020,302,United States,usd,1506.49,current,USA
+2013,5,Germany,usd,138.79,current,DEU
+2012,701,Japan,usd,0.75,current,JPN
+2018,301,Canada,usd,505.93,current,CAN
+2015,9,Portugal,usd,2.81,current,PRT
+2016,68,Czech Republic,usd,18.01,current,CZE
+2018,4,France,usd,801.66,current,FRA
+2019,76,Poland,usd,5.83,current,POL
+2013,801,Australia,usd,342.56,current,AUS
+2018,8,Norway,usd,101.71,current,NOR
+2021,76,Poland,usd,16.88,current,POL
+2017,45,Malta,usd,11.64,current,MLT
+2018,82,Estonia,usd,2.69,current,EST
+2014,301,Canada,usd,216.43,current,CAN
+2012,40,Greece,usd,20,current,GRC
+2018,20,Iceland,usd,11.2,current,ISL
+2019,742,Korea,usd,1.41,current,KOR
+2021,83,Latvia,usd,1.82,current,LVA
+2019,45,Malta,usd,22.59,current,MLT
+2014,69,Slovak Republic,usd,0.99,current,SVK
+2018,11,Switzerland,usd,281.76,current,CHE
+2019,3,Denmark,usd,53.98,current,DNK
+2014,10,Sweden,usd,1095.32,current,SWE
+2020,18,Finland,usd,59.46,current,FIN
+2012,801,Australia,usd,153.73,current,AUS
+2020,701,Japan,usd,0.32,current,JPN
+2018,2,Belgium,usd,244.5,current,BEL
+2016,8,Norway,usd,799.93,current,NOR
+2021,3,Denmark,usd,51.59,current,DNK
+2011,1,Austria,usd,42,current,AUT
+2020,301,Canada,usd,630.78,current,CAN
+2021,301,Canada,usd,463.6,current,CAN
+2021,40,Greece,usd,1.09,current,GRC
+2018,1,Austria,usd,61.77,current,AUT
+2019,77,Romania,usd,0.38,current,ROU
+2014,11,Switzerland,usd,483.45,current,CHE
+2011,68,Czech Republic,usd,11.72,current,CZE
+2015,20,Iceland,usd,4.72,current,ISL
+2014,12,United Kingdom,usd,221.92,current,GBR
+2020,4,France,usd,1223.86,current,FRA
+2014,75,Hungary,usd,10.41,current,HUN
+2013,18,Finland,usd,20.852,current,FIN
+2021,12,United Kingdom,usd,1234.74,current,GBR
+2020,12,United Kingdom,usd,805.2,current,GBR
+2020,21,Ireland,usd,37.73,current,IRL
+2016,84,Lithuania,usd,1.48,current,LTU
+2017,61,Slovenia,usd,0.94,current,SVN
+2016,10,Sweden,usd,821.49,current,SWE
+2015,8,Norway,usd,462.89,current,NOR
+2014,1,Austria,usd,109.46,current,AUT
+2019,820,New Zealand,usd,16.14,current,NZL
+2014,302,United States,usd,1245.64,current,USA
+2020,75,Hungary,usd,2.6,current,HUN
+2017,50,Spain,usd,216.92,current,ESP
+2016,83,Latvia,usd,1.76,current,LVA
+2017,10,Sweden,usd,828.17,current,SWE
+2021,6,Italy,usd,556.1,current,ITA
+2012,301,Canada,usd,266.53,current,CAN
+2013,3,Denmark,usd,161.922,current,DNK
+2016,69,Slovak Republic,usd,1.6,current,SVK
+2017,3,Denmark,usd,117.12,current,DNK
+2018,5,Germany,usd,3871.52,current,DEU
+2019,20,Iceland,usd,7.93,current,ISL
+2019,9,Portugal,usd,7.68,current,PRT
+2017,6,Italy,usd,1803.96,current,ITA
+2014,40,Greece,usd,21.29,current,GRC
+2017,1,Austria,usd,153.28,current,AUT
+2019,7,Netherlands,usd,493.77,current,NLD
+2017,21,Ireland,usd,40.7,current,IRL
+2021,820,New Zealand,usd,8.91,current,NZL
+2015,7,Netherlands,usd,1325.72,current,NLD
+2016,77,Romania,usd,0.33,current,ROU
+2021,2,Belgium,usd,250.71,current,BEL
+2014,3,Denmark,usd,256.25,current,DNK
+2015,302,United States,usd,1202.12,current,USA
+2020,76,Poland,usd,6.73,current,POL
+2012,21,Ireland,usd,0.13,current,IRL
+2020,9,Portugal,usd,9.75,current,PRT
+2020,68,Czech Republic,usd,5.51,current,CZE
+2019,302,United States,usd,1879.88,current,USA
+2019,61,Slovenia,usd,2.24,current,SVN
+2020,820,New Zealand,usd,8.18,current,NZL
+2019,2,Belgium,usd,137.87,current,BEL
+2011,50,Spain,usd,34.93,current,ESP
+2018,45,Malta,usd,15.91,current,MLT
+2013,301,Canada,usd,211.15,current,CAN
+2012,50,Spain,usd,22.72,current,ESP
+2013,8,Norway,usd,269.936,current,NOR
+2021,9,Portugal,usd,9.31,current,PRT
+2016,11,Switzerland,usd,691.47,current,CHE
+2020,45,Malta,usd,39.25,current,MLT
+2017,5,Germany,usd,6058.17,current,DEU
+2013,2,Belgium,usd,156.08,current,BEL
+2013,61,Slovenia,usd,0.1,current,SVN
+2019,84,Lithuania,usd,1.25,current,LTU
+2011,10,Sweden,usd,488.99,current,SWE
+2015,21,Ireland,usd,0.62,current,IRL
+2015,701,Japan,usd,0.22,current,JPN
+2016,72,Bulgaria,usd,8.47,current,BGR
+2020,22,Luxembourg,usd,0.16,current,LUX
+2021,69,Slovak Republic,usd,1.06,current,SVK
+2021,4,France,usd,1151.39,current,FRA
+2020,11,Switzerland,usd,322.9,current,CHE
+2012,20,Iceland,usd,0.2,current,ISL
+2018,21,Ireland,usd,56.37,current,IRL
+2015,820,New Zealand,usd,16.66,current,NZL
+2021,20,Iceland,usd,8.76,current,ISL
+2014,701,Japan,usd,0.57,current,JPN
+2019,62,Croatia,usd,1.38,current,HRV
+2018,12,United Kingdom,usd,493.1,current,GBR
+2019,12,United Kingdom,usd,609.23,current,GBR
+2016,55,Turkey,usd,42.6,current,TUR
+2011,5,Germany,usd,86.08,current,DEU
+2015,40,Greece,usd,59.43,current,GRC
+2019,1,Austria,usd,30.73,current,AUT
+2018,72,Bulgaria,usd,4.6,current,BGR
+2016,61,Slovenia,usd,7.24,current,SVN
+2017,12,United Kingdom,usd,491.83,current,GBR
+2011,301,Canada,usd,338.29,current,CAN
+2017,11,Switzerland,usd,329.89,current,CHE
+2011,820,New Zealand,usd,13.82,current,NZL
+2011,18,Finland,usd,35.1428,current,FIN
+2013,820,New Zealand,usd,19.49,current,NZL
+2021,11,Switzerland,usd,368.35,current,CHE
+2016,40,Greece,usd,146.61,current,GRC
+2014,68,Czech Republic,usd,11.55,current,CZE
+2021,302,United States,usd,1506.49,current,USA
+2020,742,Korea,usd,1.37,current,KOR
+2019,6,Italy,usd,444.83,current,ITA
+2014,6,Italy,usd,839.94,current,ITA
+2020,84,Lithuania,usd,1.2,current,LTU
+2018,69,Slovak Republic,usd,0.79,current,SVK
+2021,75,Hungary,usd,1.38,current,HUN
+2011,20,Iceland,usd,0.172328,current,ISL
+2017,20,Iceland,usd,22.16,current,ISL
+2019,82,Estonia,usd,0.64,current,EST
+2015,50,Spain,usd,32.29,current,ESP
+2019,75,Hungary,usd,1.07,current,HUN
+2019,50,Spain,usd,299.83,current,ESP
+2011,6,Italy,usd,524.52,current,ITA
+2013,82,Estonia,usd,0.23,current,EST
+2020,72,Bulgaria,usd,4.82,current,BGR
+2019,22,Luxembourg,usd,0.24,current,LUX
+2016,9,Portugal,usd,4.33,current,PRT
+2015,1,Austria,usd,438.99,current,AUT
+2019,72,Bulgaria,usd,4.3,current,BGR
+2018,701,Japan,usd,0.32,current,JPN
+2012,22,Luxembourg,usd,0.03,current,LUX
+2020,8,Norway,usd,47.37,current,NOR
+2014,55,Turkey,usd,115.64,current,TUR
+2014,2,Belgium,usd,186.72,current,BEL
+2012,3,Denmark,usd,143.37,current,DNK
+2021,61,Slovenia,usd,2.33,current,SVN
+2021,1,Austria,usd,63.12,current,AUT
+2020,2,Belgium,usd,134.26,current,BEL
+2018,55,Turkey,usd,21.27,current,TUR
+2016,4,France,usd,466.57,current,FRA
+2011,7,Netherlands,usd,481.47,current,NLD
+2021,18,Finland,usd,68.77,current,FIN
+2017,69,Slovak Republic,usd,1.33,current,SVK
+2013,22,Luxembourg,usd,0.343672,current,LUX
+2018,302,United States,usd,1621.2,current,USA
+2011,21,Ireland,usd,0.28,current,IRL
+2011,4,France,usd,545.47,current,FRA
+2013,10,Sweden,usd,705.16,current,SWE
+2016,20,Iceland,usd,15.69,current,ISL
+2017,40,Greece,usd,68.05,current,GRC
+2013,55,Turkey,usd,87.3,current,TUR
+2021,77,Romania,usd,0.45,current,ROU
+2015,10,Sweden,usd,2396.58,current,SWE
+2015,83,Latvia,usd,0.36,current,LVA
+2021,84,Lithuania,usd,1.91,current,LTU
+2018,820,New Zealand,usd,16.95,current,NZL
+2021,10,Sweden,usd,87.91,current,SWE
+2016,6,Italy,usd,1665.24,current,ITA
+2014,18,Finland,usd,16.08,current,FIN
+2011,55,Turkey,usd,213.5,current,TUR
+2016,301,Canada,usd,390.43,current,CAN
+2013,12,United Kingdom,usd,50.54,current,GBR
+2020,40,Greece,usd,80.37,current,GRC
+2016,5,Germany,usd,6585.08,current,DEU
+2013,302,United States,usd,976.5,current,USA
+2021,50,Spain,usd,223.23,current,ESP
+2012,11,Switzerland,usd,654.38,current,CHE
+2015,61,Slovenia,usd,7.12,current,SVN
+2019,40,Greece,usd,134.43,current,GRC
+2011,11,Switzerland,usd,537.46,current,CHE
+2015,75,Hungary,usd,9.68,current,HUN
+2017,2,Belgium,usd,316.06,current,BEL
+2018,77,Romania,usd,0.46,current,ROU
+2014,820,New Zealand,usd,19.82,current,NZL
+2016,1,Austria,usd,596.13,current,AUT
+2015,69,Slovak Republic,usd,1.74,current,SVK
+2018,50,Spain,usd,275.54,current,ESP
+2021,21,Ireland,usd,50.29,current,IRL
+2017,701,Japan,usd,0.29,current,JPN
+2015,301,Canada,usd,212.99,current,CAN
+2014,50,Spain,usd,18.43,current,ESP
+2021,72,Bulgaria,usd,6.5,current,BGR
+2020,83,Latvia,usd,1.01,current,LVA
+2020,69,Slovak Republic,usd,0.97,current,SVK
+2012,302,United States,usd,831.53,current,USA
+2015,5,Germany,usd,3018.56,current,DEU
+2012,820,New Zealand,usd,19.26,current,NZL
+2015,84,Lithuania,usd,0.8,current,LTU
+2016,3,Denmark,usd,411.55,current,DNK
+2017,301,Canada,usd,466.94,current,CAN
+2019,10,Sweden,usd,262.59,current,SWE
+2017,9,Portugal,usd,5.75,current,PRT
+2011,8,Norway,usd,263.2,current,NOR
+2015,45,Malta,usd,2.59,current,MLT
+2018,84,Lithuania,usd,1.22,current,LTU
+2013,1,Austria,usd,63.26,current,AUT
+2016,75,Hungary,usd,9.82,current,HUN
+2016,12,United Kingdom,usd,574.03,current,GBR
+2020,5,Germany,usd,2630.84,current,DEU
+2011,40,Greece,usd,25.4,current,GRC
+2017,8,Norway,usd,149.88,current,NOR
+2014,21,Ireland,usd,0.33,current,IRL
+2016,76,Poland,usd,5.78,current,POL
+2018,68,Czech Republic,usd,24.99,current,CZE
+2011,801,Australia,usd,0.02,current,AUS
+2018,83,Latvia,usd,1.16,current,LVA
+2013,7,Netherlands,usd,372.705,current,NLD
+2015,2,Belgium,usd,228.11,current,BEL
+2017,72,Bulgaria,usd,4.21,current,BGR
+2013,20,Iceland,usd,0.31,current,ISL
+2020,82,Estonia,usd,0.61,current,EST
+2013,68,Czech Republic,usd,8.93632,current,CZE
+2015,76,Poland,usd,9.29,current,POL
+2018,18,Finland,usd,56.96,current,FIN
+2020,77,Romania,usd,0.47,current,ROU
+2021,68,Czech Republic,usd,6.3,current,CZE
+2021,5,Germany,usd,2689.59,current,DEU
+2012,5,Germany,usd,75.94,current,DEU
+2014,82,Estonia,usd,0.3,current,EST
+2017,77,Romania,usd,0.06,current,ROU
+2017,84,Lithuania,usd,1.21,current,LTU
+2017,7,Netherlands,usd,835.44,current,NLD
+2017,76,Poland,usd,5.94,current,POL
+2019,69,Slovak Republic,usd,0.87,current,SVK
+2020,61,Slovenia,usd,2.69,current,SVN
+2017,55,Turkey,usd,14.17,current,TUR
+2017,82,Estonia,usd,2.66,current,EST
+2014,4,France,usd,485.11,current,FRA
+2014,61,Slovenia,usd,0.08,current,SVN
+2015,6,Italy,usd,983.03,current,ITA
+2013,701,Japan,usd,0.63,current,JPN
+2011,9,Portugal,usd,0.37,current,PRT
+2020,7,Netherlands,usd,561.59,current,NLD
+2018,10,Sweden,usd,524.75,current,SWE
+2020,1,Austria,usd,30.86,current,AUT
+2013,4,France,usd,452.82,current,FRA
+2020,50,Spain,usd,194.62,current,ESP
+2016,82,Estonia,usd,2.48,current,EST
+2021,8,Norway,usd,52.25,current,NOR
+2012,4,France,usd,506.94,current,FRA
+2020,30,Cyprus,usd,0.04,current,CYP
+2014,8,Norway,usd,278.73,current,NOR
+2015,62,Croatia,usd,1.32,current,HRV
+2017,75,Hungary,usd,3.34,current,HUN
+2015,3,Denmark,usd,396.97,current,DNK
+2011,12,United Kingdom,usd,31.3,current,GBR
+2018,7,Netherlands,usd,574.2,current,NLD
+2011,701,Japan,usd,0.71,current,JPN
+2014,77,Romania,usd,0.07,current,ROU
+2017,4,France,usd,622.65,current,FRA
+2019,301,Canada,usd,475.89,current,CAN
+2018,75,Hungary,usd,3.65,current,HUN
+2019,11,Switzerland,usd,283.65,current,CHE
+2016,820,New Zealand,usd,16.78,current,NZL
+2019,8,Norway,usd,59.54,current,NOR
+2015,77,Romania,usd,0.08,current,ROU
+2011,302,United States,usd,731.74,current,USA
+2016,701,Japan,usd,0.24,current,JPN
+2018,6,Italy,usd,1124.71,current,ITA
+2016,302,United States,usd,1701.81,current,USA
+2017,302,United States,usd,1456.25,current,USA
+2020,55,Turkey,usd,0.05,current,TUR
+2020,62,Croatia,usd,2.42,current,HRV
+2017,83,Latvia,usd,0.37,current,LVA
+2018,742,Korea,usd,1.83,current,KOR
+2021,742,Korea,usd,0.53,current,KOR
+2012,18,Finland,usd,22.8225,current,FIN
+2014,45,Malta,usd,10.71,current,MLT
+2014,7,Netherlands,usd,935.38,current,NLD
+2013,69,Slovak Republic,usd,0.96,current,SVK
+2012,12,United Kingdom,usd,44.96,current,GBR
+2014,5,Germany,usd,171.36,current,DEU
+2012,7,Netherlands,usd,339.12,current,NLD
+2014,20,Iceland,usd,2.55,current,ISL
+2013,40,Greece,usd,21.36,current,GRC
+2021,7,Netherlands,usd,410.39,current,NLD
+2015,68,Czech Republic,usd,14.11,current,CZE
+2011,3,Denmark,usd,121.222,current,DNK
+2021,55,Turkey,usd,61.73,current,TUR
+2015,18,Finland,usd,39.04,current,FIN
+2018,3,Denmark,usd,67.17,current,DNK
+2016,2,Belgium,usd,376.02,current,BEL
+2017,18,Finland,usd,77.43,current,FIN
+2012,61,Slovenia,usd,0.26,current,SVN
+2017,820,New Zealand,usd,17.41,current,NZL
+2019,21,Ireland,usd,83.51,current,IRL
+2020,3,Denmark,usd,57.38,current,DNK
+2016,18,Finland,usd,130.19,current,FIN
+2018,76,Poland,usd,6.25,current,POL
+2015,4,France,usd,363.35,current,FRA
+2012,1,Austria,usd,57.58,current,AUT
+2015,82,Estonia,usd,0.53,current,EST
+2017,68,Czech Republic,usd,21.73,current,CZE
+2012,10,Sweden,usd,570.71,current,SWE
+2016,50,Spain,usd,88.55,current,ESP
+2019,18,Finland,usd,89.59,current,FIN
+2011,2,Belgium,usd,126.83,current,BEL
+2013,50,Spain,usd,23.46146256,constant,ESP
+2019,4,France,usd,1320.102944,constant,FRA
+2020,6,Italy,usd,241.0789239,constant,ITA
+2012,55,Turkey,usd,78.49895038,constant,TUR
+2013,11,Switzerland,usd,449.9776879,constant,CHE
+2012,6,Italy,usd,249.3951216,constant,ITA
+2018,61,Slovenia,usd,2.601786613,constant,SVN
+2020,10,Sweden,usd,165.2393919,constant,SWE
+2012,68,Czech Republic,usd,10.76123503,constant,CZE
+2014,62,Croatia,usd,3.699048919,constant,HRV
+2015,11,Switzerland,usd,525.7618416,constant,CHE
+2016,45,Malta,usd,,constant,MLT
+2012,8,Norway,usd,184.9020142,constant,NOR
+2012,9,Portugal,usd,0.882428471,constant,PRT
+2016,7,Netherlands,usd,519.3875923,constant,NLD
+2021,701,Japan,usd,0.27,constant,JPN
+2013,6,Italy,usd,390.5362929,constant,ITA
+2016,576,United Arab Emirates,usd,,constant,ARE
+2016,21,Ireland,usd,1.185786121,constant,IRL
+2012,2,Belgium,usd,134.5402916,constant,BEL
+2015,12,United Kingdom,usd,405.0143038,constant,GBR
+2019,701,Japan,usd,0.328588475,constant,JPN
+2019,5,Germany,usd,3356.87099,constant,DEU
+2018,40,Greece,usd,28.54591528,constant,GRC
+2019,83,Latvia,usd,1.135556128,constant,LVA
+2019,68,Czech Republic,usd,7.067637777,constant,CZE
+2013,21,Ireland,usd,0.039866636,constant,IRL
+2018,9,Portugal,usd,10.00237237,constant,PRT
+2014,9,Portugal,usd,0.920240345,constant,PRT
+2019,55,Turkey,usd,13.05169916,constant,TUR
+2013,9,Portugal,usd,1.570359668,constant,PRT
+2020,20,Iceland,usd,6.338390253,constant,ISL
+2020,302,United States,usd,1566.61602,constant,USA
+2013,5,Germany,usd,143.7323217,constant,DEU
+2012,701,Japan,usd,0.571177631,constant,JPN
+2018,301,Canada,usd,575.736069,constant,CAN
+2015,9,Portugal,usd,3.295352007,constant,PRT
+2016,68,Czech Republic,usd,23.96699208,constant,CZE
+2018,4,France,usd,840.3924027,constant,FRA
+2019,76,Poland,usd,6.271493493,constant,POL
+2013,801,Australia,usd,312.6241379,constant,AUS
+2018,8,Norway,usd,106.282655,constant,NOR
+2021,76,Poland,usd,16.88,constant,POL
+2017,45,Malta,usd,,constant,MLT
+2018,82,Estonia,usd,2.716384176,constant,EST
+2014,301,Canada,usd,218.8046475,constant,CAN
+2012,40,Greece,usd,17.899634,constant,GRC
+2018,20,Iceland,usd,10.75212032,constant,ISL
+2019,742,Korea,usd,1.482963122,constant,KOR
+2021,83,Latvia,usd,1.82,constant,LVA
+2019,45,Malta,usd,,constant,MLT
+2014,69,Slovak Republic,usd,0.970321985,constant,SVK
+2018,11,Switzerland,usd,303.1286183,constant,CHE
+2019,3,Denmark,usd,59.402878,constant,DNK
+2014,10,Sweden,usd,1019.649911,constant,SWE
+2020,18,Finland,usd,63.36677173,constant,FIN
+2012,801,Australia,usd,132.5196825,constant,AUS
+2020,701,Japan,usd,0.309342202,constant,JPN
+2018,2,Belgium,usd,260.9269349,constant,BEL
+2016,8,Norway,usd,956.9519041,constant,NOR
+2021,3,Denmark,usd,51.59,constant,DNK
+2011,1,Austria,usd,42.76124184,constant,AUT
+2020,301,Canada,usd,724.9510133,constant,CAN
+2021,301,Canada,usd,463.6,constant,CAN
+2021,40,Greece,usd,1.09,constant,GRC
+2018,1,Austria,usd,65.34768039,constant,AUT
+2019,77,Romania,usd,0.413245217,constant,ROU
+2014,11,Switzerland,usd,479.7978934,constant,CHE
+2011,68,Czech Republic,usd,12.1509315,constant,CZE
+2015,20,Iceland,usd,5.848923761,constant,ISL
+2014,12,United Kingdom,usd,214.7025664,constant,GBR
+2020,4,France,usd,1279.607802,constant,FRA
+2014,75,Hungary,usd,10.80766989,constant,HUN
+2013,18,Finland,usd,20.83601594,constant,FIN
+2021,12,United Kingdom,usd,1234.74,constant,GBR
+2020,12,United Kingdom,usd,870.5022514,constant,GBR
+2020,21,Ireland,usd,38.90500275,constant,IRL
+2016,84,Lithuania,usd,1.790613061,constant,LTU
+2017,61,Slovenia,usd,1.067249489,constant,SVN
+2016,10,Sweden,usd,919.0575296,constant,SWE
+2015,8,Norway,usd,523.7725771,constant,NOR
+2014,1,Austria,usd,110.2727487,constant,AUT
+2019,820,New Zealand,usd,18.32787504,constant,NZL
+2014,302,United States,usd,1420.248555,constant,USA
+2020,75,Hungary,usd,2.83353161,constant,HUN
+2017,50,Spain,usd,239.6737618,constant,ESP
+2016,83,Latvia,usd,2.093998836,constant,LVA
+2017,10,Sweden,usd,906.7452915,constant,SWE
+2021,6,Italy,usd,556.1,constant,ITA
+2012,301,Canada,usd,252.7781217,constant,CAN
+2013,3,Denmark,usd,156.52003,constant,DNK
+2016,69,Slovak Republic,usd,1.895333458,constant,SVK
+2017,3,Denmark,usd,129.2665385,constant,DNK
+2018,5,Germany,usd,4144.310166,constant,DEU
+2019,20,Iceland,usd,8.24471975,constant,ISL
+2019,9,Portugal,usd,8.343416235,constant,PRT
+2017,6,Italy,usd,1981.475711,constant,ITA
+2014,40,Greece,usd,19.21708483,constant,GRC
+2017,1,Austria,usd,172.807875,constant,AUT
+2019,7,Netherlands,usd,546.3854618,constant,NLD
+2017,21,Ireland,usd,43.94750802,constant,IRL
+2021,820,New Zealand,usd,8.91,constant,NZL
+2015,7,Netherlands,usd,1589.818614,constant,NLD
+2016,77,Romania,usd,0.373856567,constant,ROU
+2021,2,Belgium,usd,250.71,constant,BEL
+2014,3,Denmark,usd,245.2394988,constant,DNK
+2015,302,United States,usd,1357.05061,constant,USA
+2020,76,Poland,usd,7.062746679,constant,POL
+2012,21,Ireland,usd,0.134788386,constant,IRL
+2020,9,Portugal,usd,10.20667967,constant,PRT
+2020,68,Czech Republic,usd,6.180061843,constant,CZE
+2019,302,United States,usd,1978.46899,constant,USA
+2019,61,Slovenia,usd,2.453943274,constant,SVN
+2020,820,New Zealand,usd,9.240665017,constant,NZL
+2019,2,Belgium,usd,152.4470967,constant,BEL
+2011,50,Spain,usd,31.99076786,constant,ESP
+2018,45,Malta,usd,,constant,MLT
+2013,301,Canada,usd,202.9421485,constant,CAN
+2012,50,Spain,usd,22.53527968,constant,ESP
+2013,8,Norway,usd,216.905181,constant,NOR
+2021,9,Portugal,usd,9.31,constant,PRT
+2016,11,Switzerland,usd,752.1987037,constant,CHE
+2020,45,Malta,usd,,constant,MLT
+2017,5,Germany,usd,6923.593803,constant,DEU
+2013,2,Belgium,usd,159.6377386,constant,BEL
+2013,61,Slovenia,usd,0.100112179,constant,SVN
+2019,84,Lithuania,usd,1.348524868,constant,LTU
+2011,10,Sweden,usd,446.2171383,constant,SWE
+2015,21,Ireland,usd,0.685482219,constant,IRL
+2015,701,Japan,usd,0.245502052,constant,JPN
+2016,72,Bulgaria,usd,9.595651889,constant,BGR
+2020,22,Luxembourg,usd,0.173712629,constant,LUX
+2021,69,Slovak Republic,usd,1.06,constant,SVK
+2021,4,France,usd,1151.39,constant,FRA
+2020,11,Switzerland,usd,335.7502124,constant,CHE
+2012,20,Iceland,usd,0.265176825,constant,ISL
+2018,21,Ireland,usd,57.6728334,constant,IRL
+2015,820,New Zealand,usd,19.46781511,constant,NZL
+2021,20,Iceland,usd,8.76,constant,ISL
+2014,701,Japan,usd,0.568156311,constant,JPN
+2019,62,Croatia,usd,1.500732629,constant,HRV
+2018,12,United Kingdom,usd,553.5674098,constant,GBR
+2019,12,United Kingdom,usd,700.7437531,constant,GBR
+2016,55,Turkey,usd,38.25579671,constant,TUR
+2011,5,Germany,usd,88.08545871,constant,DEU
+2015,40,Greece,usd,64.35204215,constant,GRC
+2019,1,Austria,usd,33.73372259,constant,AUT
+2018,72,Bulgaria,usd,4.906921632,constant,BGR
+2016,61,Slovenia,usd,8.502152368,constant,SVN
+2017,12,United Kingdom,usd,583.3866159,constant,GBR
+2011,301,Canada,usd,321.4447993,constant,CAN
+2017,11,Switzerland,usd,360.0917269,constant,CHE
+2011,820,New Zealand,usd,15.04596614,constant,NZL
+2011,18,Finland,usd,35.41122882,constant,FIN
+2013,820,New Zealand,usd,19.8571358,constant,NZL
+2021,11,Switzerland,usd,368.35,constant,CHE
+2016,40,Greece,usd,160.1721018,constant,GRC
+2014,68,Czech Republic,usd,13.33448024,constant,CZE
+2021,302,United States,usd,1506.49,constant,USA
+2020,742,Korea,usd,1.440325347,constant,KOR
+2019,6,Italy,usd,482.4031966,constant,ITA
+2014,6,Italy,usd,805.9300943,constant,ITA
+2020,84,Lithuania,usd,1.253395716,constant,LTU
+2018,69,Slovak Republic,usd,0.849030172,constant,SVK
+2021,75,Hungary,usd,1.38,constant,HUN
+2011,20,Iceland,usd,0.219234508,constant,ISL
+2017,20,Iceland,usd,21.54658032,constant,ISL
+2019,82,Estonia,usd,0.659416919,constant,EST
+2015,50,Spain,usd,36.84594522,constant,ESP
+2019,75,Hungary,usd,1.167286935,constant,HUN
+2019,50,Spain,usd,325.2497795,constant,ESP
+2011,6,Italy,usd,497.7805869,constant,ITA
+2013,82,Estonia,usd,0.236473466,constant,EST
+2020,72,Bulgaria,usd,5.100368507,constant,BGR
+2019,22,Luxembourg,usd,0.276549136,constant,LUX
+2016,9,Portugal,usd,5.007697524,constant,PRT
+2015,1,Austria,usd,517.2418422,constant,AUT
+2019,72,Bulgaria,usd,4.676195872,constant,BGR
+2018,701,Japan,usd,0.324780033,constant,JPN
+2012,22,Luxembourg,usd,0.033451687,constant,LUX
+2020,8,Norway,usd,59.70266297,constant,NOR
+2014,55,Turkey,usd,87.70472517,constant,TUR
+2014,2,Belgium,usd,189.2439441,constant,BEL
+2012,3,Denmark,usd,144.1235382,constant,DNK
+2021,61,Slovenia,usd,2.33,constant,SVN
+2021,1,Austria,usd,63.12,constant,AUT
+2020,2,Belgium,usd,143.9802709,constant,BEL
+2018,55,Turkey,usd,23.66013988,constant,TUR
+2016,4,France,usd,529.95118,constant,FRA
+2011,7,Netherlands,usd,478.1481956,constant,NLD
+2021,18,Finland,usd,68.77,constant,FIN
+2017,69,Slovak Republic,usd,1.526966388,constant,SVK
+2013,22,Luxembourg,usd,0.362696976,constant,LUX
+2018,302,United States,usd,1736.742737,constant,USA
+2011,21,Ireland,usd,0.274094104,constant,IRL
+2011,4,France,usd,513.6574135,constant,FRA
+2013,10,Sweden,usd,633.9595755,constant,SWE
+2016,20,Iceland,usd,17.41531488,constant,ISL
+2017,40,Greece,usd,72.72335153,constant,GRC
+2013,55,Turkey,usd,61.87532146,constant,TUR
+2021,77,Romania,usd,0.45,constant,ROU
+2015,10,Sweden,usd,2682.988817,constant,SWE
+2015,83,Latvia,usd,0.430682513,constant,LVA
+2021,84,Lithuania,usd,1.91,constant,LTU
+2018,820,New Zealand,usd,18.74670153,constant,NZL
+2021,10,Sweden,usd,87.91,constant,SWE
+2016,6,Italy,usd,1878.081186,constant,ITA
+2014,18,Finland,usd,15.82006315,constant,FIN
+2011,55,Turkey,usd,151.612572,constant,TUR
+2016,301,Canada,usd,474.1836386,constant,CAN
+2013,12,United Kingdom,usd,52.30729156,constant,GBR
+2020,40,Greece,usd,85.60664237,constant,GRC
+2016,5,Germany,usd,7787.297651,constant,DEU
+2013,302,United States,usd,1134.200793,constant,USA
+2021,50,Spain,usd,223.23,constant,ESP
+2012,11,Switzerland,usd,661.2766609,constant,CHE
+2015,61,Slovenia,usd,8.408204058,constant,SVN
+2019,40,Greece,usd,144.5463052,constant,GRC
+2011,11,Switzerland,usd,513.8122332,constant,CHE
+2015,75,Hungary,usd,11.7355184,constant,HUN
+2017,2,Belgium,usd,358.5036704,constant,BEL
+2018,77,Romania,usd,0.490692163,constant,ROU
+2014,820,New Zealand,usd,19.51524712,constant,NZL
+2016,1,Austria,usd,691.828919,constant,AUT
+2015,69,Slovak Republic,usd,2.044268743,constant,SVK
+2018,50,Spain,usd,287.2073164,constant,ESP
+2021,21,Ireland,usd,50.29,constant,IRL
+2017,701,Japan,usd,0.298997263,constant,JPN
+2015,301,Canada,usd,251.3688703,constant,CAN
+2014,50,Spain,usd,17.67837078,constant,ESP
+2021,72,Bulgaria,usd,6.5,constant,BGR
+2020,83,Latvia,usd,1.063836363,constant,LVA
+2020,69,Slovak Republic,usd,1.028998097,constant,SVK
+2012,302,United States,usd,982.7301627,constant,USA
+2015,5,Germany,usd,3605.912697,constant,DEU
+2012,820,New Zealand,usd,20.51191644,constant,NZL
+2015,84,Lithuania,usd,0.980111336,constant,LTU
+2016,3,Denmark,usd,468.6154044,constant,DNK
+2017,301,Canada,usd,541.5354613,constant,CAN
+2019,10,Sweden,usd,303.0570857,constant,SWE
+2017,9,Portugal,usd,6.426301241,constant,PRT
+2011,8,Norway,usd,213.7216114,constant,NOR
+2015,45,Malta,usd,,constant,MLT
+2018,84,Lithuania,usd,1.281520404,constant,LTU
+2013,1,Austria,usd,65.06053122,constant,AUT
+2016,75,Hungary,usd,11.83924852,constant,HUN
+2016,12,United Kingdom,usd,661.4921428,constant,GBR
+2020,5,Germany,usd,2813.121354,constant,DEU
+2011,40,Greece,usd,20.95662813,constant,GRC
+2017,8,Norway,usd,169.832482,constant,NOR
+2014,21,Ireland,usd,0.328424101,constant,IRL
+2016,76,Poland,usd,6.794346879,constant,POL
+2018,68,Czech Republic,usd,28.45774426,constant,CZE
+2011,801,Australia,usd,0.017184484,constant,AUS
+2018,83,Latvia,usd,1.209045613,constant,LVA
+2013,7,Netherlands,usd,377.311111,constant,NLD
+2015,2,Belgium,usd,272.8993111,constant,BEL
+2017,72,Bulgaria,usd,4.689022933,constant,BGR
+2013,20,Iceland,usd,0.392939236,constant,ISL
+2020,82,Estonia,usd,0.620547278,constant,EST
+2013,68,Czech Republic,usd,9.971402785,constant,CZE
+2015,76,Poland,usd,10.47136199,constant,POL
+2018,18,Finland,usd,60.23390949,constant,FIN
+2020,77,Romania,usd,0.497338838,constant,ROU
+2021,68,Czech Republic,usd,6.3,constant,CZE
+2021,5,Germany,usd,2689.59,constant,DEU
+2012,5,Germany,usd,82.82888559,constant,DEU
+2014,82,Estonia,usd,0.299428252,constant,EST
+2017,77,Romania,usd,0.06682693,constant,ROU
+2017,84,Lithuania,usd,1.377643212,constant,LTU
+2017,7,Netherlands,usd,968.9460421,constant,NLD
+2017,76,Poland,usd,6.56851993,constant,POL
+2019,69,Slovak Republic,usd,0.961787529,constant,SVK
+2020,61,Slovenia,usd,2.859744864,constant,SVN
+2017,55,Turkey,usd,13.84086558,constant,TUR
+2017,82,Estonia,usd,2.925067912,constant,EST
+2014,4,France,usd,466.9096606,constant,FRA
+2014,61,Slovenia,usd,0.07977909,constant,SVN
+2015,6,Italy,usd,1117.780109,constant,ITA
+2013,701,Japan,usd,0.588742356,constant,JPN
+2011,9,Portugal,usd,0.36222968,constant,PRT
+2020,7,Netherlands,usd,596.819574,constant,NLD
+2018,10,Sweden,usd,570.6634258,constant,SWE
+2020,1,Austria,usd,32.53515733,constant,AUT
+2013,4,France,usd,438.0504646,constant,FRA
+2020,50,Spain,usd,205.1213099,constant,ESP
+2016,82,Estonia,usd,2.88644843,constant,EST
+2021,8,Norway,usd,52.25,constant,NOR
+2012,4,France,usd,510.4807873,constant,FRA
+2020,30,Cyprus,usd,,constant,CYP
+2014,8,Norway,usd,239.4276964,constant,NOR
+2015,62,Croatia,usd,1.484449391,constant,HRV
+2017,75,Hungary,usd,3.779048816,constant,HUN
+2015,3,Denmark,usd,452.7825989,constant,DNK
+2011,12,United Kingdom,usd,32.82226099,constant,GBR
+2018,7,Netherlands,usd,620.9208396,constant,NLD
+2011,701,Japan,usd,0.535908658,constant,JPN
+2014,77,Romania,usd,0.070940664,constant,ROU
+2017,4,France,usd,690.1924575,constant,FRA
+2019,301,Canada,usd,545.3410045,constant,CAN
+2018,75,Hungary,usd,3.879120277,constant,HUN
+2019,11,Switzerland,usd,310.4810684,constant,CHE
+2016,820,New Zealand,usd,19.2871017,constant,NZL
+2019,8,Norway,usd,67.61322287,constant,NOR
+2015,77,Romania,usd,0.08996663,constant,ROU
+2011,302,United States,usd,880.9714876,constant,USA
+2016,701,Japan,usd,0.239811362,constant,JPN
+2018,6,Italy,usd,1167.489013,constant,ITA
+2016,302,United States,usd,1902.078748,constant,USA
+2017,302,United States,usd,1597.306241,constant,USA
+2020,55,Turkey,usd,0.061676202,constant,TUR
+2020,62,Croatia,usd,2.560765931,constant,HRV
+2017,83,Latvia,usd,0.419479382,constant,LVA
+2018,742,Korea,usd,1.801907089,constant,KOR
+2021,742,Korea,usd,0.53,constant,KOR
+2012,18,Finland,usd,24.15840392,constant,FIN
+2014,45,Malta,usd,,constant,MLT
+2014,7,Netherlands,usd,945.266307,constant,NLD
+2013,69,Slovak Republic,usd,0.93848637,constant,SVK
+2012,12,United Kingdom,usd,46.94169514,constant,GBR
+2014,5,Germany,usd,174.3211564,constant,DEU
+2012,7,Netherlands,usd,359.1461382,constant,NLD
+2014,20,Iceland,usd,2.964814779,constant,ISL
+2013,40,Greece,usd,18.89392453,constant,GRC
+2021,7,Netherlands,usd,410.39,constant,NLD
+2015,68,Czech Republic,usd,19.1096419,constant,CZE
+2011,3,Denmark,usd,115.4934111,constant,DNK
+2021,55,Turkey,usd,61.73,constant,TUR
+2015,18,Finland,usd,45.21058258,constant,FIN
+2018,3,Denmark,usd,70.49349859,constant,DNK
+2016,2,Belgium,usd,442.7447276,constant,BEL
+2017,18,Finland,usd,87.44383078,constant,FIN
+2012,61,Slovenia,usd,0.273164827,constant,SVN
+2017,820,New Zealand,usd,18.97490755,constant,NZL
+2019,21,Ireland,usd,86.55317377,constant,IRL
+2020,3,Denmark,usd,60.53928198,constant,DNK
+2016,18,Finland,usd,151.1037367,constant,FIN
+2018,76,Poland,usd,6.525859485,constant,POL
+2015,4,France,usd,413.5785155,constant,FRA
+2012,1,Austria,usd,62.15913556,constant,AUT
+2015,82,Estonia,usd,0.628858984,constant,EST
+2017,68,Czech Republic,usd,27.31423541,constant,CZE
+2012,10,Sweden,usd,538.2735794,constant,SWE
+2016,50,Spain,usd,101.0315352,constant,ESP
+2019,18,Finland,usd,98.42890788,constant,FIN
+2011,2,Belgium,usd,127.9000068,constant,BEL

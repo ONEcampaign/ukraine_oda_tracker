@@ -1,4 +1,5 @@
 from scripts.create_table import get_data, SHEETS, build_table
+from scripts.unhcr_data import load_hdrc_data
 from scripts.config import PATHS
 from datetime import datetime
 from csv import writer
@@ -15,7 +16,15 @@ def last_updated():
 
 
 if __name__ == "__main__":
+    # Build table
     raw_data = get_data(pages_dict=SHEETS)
     df = build_table(raw_data)
     df.to_csv(f"{PATHS.output}/table.csv", index=False)
+
+    # Update data on google sheets
+    if datetime.now().hour == 12:
+        print("Updating google sheets")
+        load_hdrc_data()
+
+    # Update last updated date
     last_updated()
