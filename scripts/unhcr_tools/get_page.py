@@ -20,7 +20,11 @@ UNHCR_URL: str = (
 def _get_driver() -> webdriver.chrome:
     """Get driver for Chrome"""
 
+    options = webdriver.ChromeOptions()
+    options.add_argument("--no-sandbox")
+
     CHROME = ChromeDriverManager().install()
+
 
     return webdriver.Chrome(service=Service(CHROME))
 
