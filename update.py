@@ -22,7 +22,7 @@ if __name__ == "__main__":
     df.to_csv(f"{PATHS.output}/table.csv", index=False)
 
     # Update data on google sheets
-    if datetime.now().hour == 12:
+    if datetime.now().hour == 14:
         print("Updating google sheets")
         load_hdrc_data()
 
