@@ -25,7 +25,6 @@ def _get_driver() -> webdriver.chrome:
 
     CHROME = ChromeDriverManager().install()
 
-
     return webdriver.Chrome(service=Service(CHROME))
 
 
