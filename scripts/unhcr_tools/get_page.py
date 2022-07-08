@@ -16,11 +16,11 @@ UNHCR_URL: str = (
     "YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
 )
 
-CHROME = ChromeDriverManager().install()
-
 
 def _get_driver() -> webdriver.chrome:
     """Get driver for Chrome"""
+
+    CHROME = ChromeDriverManager().install()
 
     return webdriver.Chrome(service=Service(CHROME))
 
