@@ -129,4 +129,5 @@ def pipeline():
 
 
 if __name__ == "__main__":
-    data = pipeline()
+    # data = pipeline()
+    pass
