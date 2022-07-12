@@ -12,7 +12,7 @@ def idrc_flourish():
     return (
         read_idrc()
         .loc[lambda d: d.prices == "constant"]
-        .loc[lambda d: d.year>=2012]
+        .loc[lambda d: d.year >= 2012]
         .filter(["year", "donor", "value"], axis=1)
         .pivot(index="year", columns="donor", values="value")
     )
