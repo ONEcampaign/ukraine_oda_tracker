@@ -59,6 +59,5 @@ def load_hdrc_data() -> None:
     df2gsheet(data, sheet)
 
 
-
 if __name__ == "__main__":
     load_hdrc_data()
