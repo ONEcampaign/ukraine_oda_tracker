@@ -22,6 +22,7 @@ def read_idrc():
 
 def idrc_as_share():
     import numpy as np
+
     idrc = read_idrc()
     oda = read_oda()
 
