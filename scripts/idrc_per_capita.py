@@ -85,14 +85,14 @@ def filter_dac(df: pd.DataFrame):
 
 
 def get_idrc():
-    return pd.read_csv("./idrc.csv").loc[
+    return pd.read_csv("../raw_data/idrc.csv").loc[
         lambda d: d.prices == "current", ["iso_code", "year", "value"]
     ]
 
 
 def get_refugees():
     return (
-        pd.read_csv("./refugees.csv")
+        pd.read_csv("../raw_data/refugees.csv")
         .assign(iso_code=lambda d: coco.convert(d.Donor, to="ISO3"))
         .filter(["iso_code", "refugees"])
     )

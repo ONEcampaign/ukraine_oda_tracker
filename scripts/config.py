@@ -14,8 +14,8 @@ class Paths:
         return os.path.join(self.project_dir, "output")
 
     @property
-    def glossaries(self):
-        return os.path.join(self.project_dir, "scripts", "glossaries")
+    def data(self):
+        return os.path.join(self.project_dir, "raw_data",)
 
 
 PATHS = Paths(os.path.dirname(os.path.dirname(__file__)))
