@@ -1,4 +1,6 @@
 import pandas as pd
+import pydeflate
+
 from scripts import config
 
 
@@ -31,6 +33,43 @@ def idrc_as_share():
     )
 
 
+def idrc_constant_wide():
+
+    idrc = read_idrc()
+
+    idrc_constant = pydeflate.deflate(
+        df=idrc.copy(deep=True),
+        base_year=2021,
+        source="oecd_dac",
+        id_column="donor_name",
+        id_type="regex",
+        date_column="year",
+        source_col="idrc",
+        target_col="idrc",
+    )
+
+    dac_total = (
+        idrc_constant.groupby(["year"], as_index=False)["idrc"]
+        .sum()
+        .loc[lambda d: d.year != 2021]
+    ).assign(donor_name="DAC Countries, Total")
+
+    idrc_constant = pd.concat(
+        [dac_total, idrc_constant], ignore_index=True
+    ).sort_values(["idrc"], ascending=False)
+
+    order = idrc_constant.donor_name.unique()
+
+    return (
+        idrc_constant.pivot(index="year", columns="donor_name", values="idrc")
+        .filter(order, axis=1)
+        .reset_index()
+    )
+
+
 if __name__ == "__main__":
     share = idrc_as_share()
-    share.to_csv(config.PATHS.output+"/idrc_share.csv", index=False)
+    share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
+
+    idrc_constant = idrc_constant_wide()
+    idrc_constant.to_csv(config.PATHS.output + "/idrc_constant.csv", index=False)
