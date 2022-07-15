@@ -73,4 +73,3 @@ if __name__ == "__main__":
 
     idrc_constant = idrc_constant_wide()
     idrc_constant.to_csv(config.PATHS.output + "/idrc_constant.csv", index=False)
-
