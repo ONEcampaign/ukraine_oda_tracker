@@ -91,7 +91,7 @@ def _clean_df(df: pd.DataFrame) -> pd.DataFrame:
     df.iso_code = df.iso_code.replace("Türkiye", "TUR", regex=False)
 
     # Change date format
-    df["Data Date"] = pd.to_datetime(df["Data Date"], format="%d/%m/%Y").dt.strftime(
+    df["Data Date"] = pd.to_datetime(df["Data Date"], format="%m/%d/%Y").dt.strftime(
         "%d %B %Y"
     )
 
