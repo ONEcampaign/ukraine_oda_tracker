@@ -22,6 +22,7 @@ def read_idrc():
 
 def idrc_as_share():
     import numpy as np
+
     idrc = read_idrc()
     oda = read_oda()
 
@@ -33,8 +34,8 @@ def idrc_as_share():
 
     dac = df.groupby(["year"], as_index=False).sum().drop("share", axis=1)
     dac.loc[dac.year == 2021, "idrc"] = np.nan
-    dac['share'] = round(100 * dac.idrc / dac.total_oda, 1)
-    dac['Donor'] = 'DAC Countries, Total'
+    dac["share"] = round(100 * dac.idrc / dac.total_oda, 1)
+    dac["Donor"] = "DAC Countries, Total"
 
     return pd.concat([dac, df], ignore_index=True)
 
