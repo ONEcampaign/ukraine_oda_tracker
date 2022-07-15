@@ -192,8 +192,8 @@ def build_table(data: dict) -> pd.DataFrame:
             source += col[1]
 
         data = {
-            "Cumulative ODA pledged to Ukraine (USD millions)": p[0],
-            "Cumulative In-donor Refugee Costs (USD millions)": i[0],
+            "Estimated ODA pledged to Ukraine (USD millions)": p[0],
+            "Estimated In-donor Refugee Costs (USD millions)": i[0],
             "Source": source,
         }
 
@@ -202,10 +202,10 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-        df["amount1"] = df["Cumulative ODA pledged to Ukraine (USD millions)"].apply(
+        df["amount1"] = df["Estimated ODA pledged to Ukraine (USD millions)"].apply(
             lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
         )
-        df["amount2"] = df["Cumulative In-donor Refugee Costs (USD millions)"].apply(
+        df["amount2"] = df["Estimated In-donor Refugee Costs (USD millions)"].apply(
             lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
         )
 
@@ -220,8 +220,8 @@ def build_table(data: dict) -> pd.DataFrame:
         )
         .drop(columns=["amount1", "amount2"])
         .loc[
-            lambda d: (d["Cumulative ODA pledged to Ukraine (USD millions)"] != "")
-            | (d["Cumulative In-donor Refugee Costs (USD millions)"] != "")
+            lambda d: (d["Estimated ODA pledged to Ukraine (USD millions)"] != "")
+            | (d["Estimated In-donor Refugee Costs (USD millions)"] != "")
             | (d["Source"] != ""),
         ]
     )
