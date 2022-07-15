@@ -15,7 +15,10 @@ class Paths:
 
     @property
     def data(self):
-        return os.path.join(self.project_dir, "raw_data",)
+        return os.path.join(
+            self.project_dir,
+            "raw_data",
+        )
 
 
 PATHS = Paths(os.path.dirname(os.path.dirname(__file__)))
