@@ -56,9 +56,8 @@ def idrc_constant_wide():
     )
 
     dac_total = (
-        idrc_constant.groupby(["year"], as_index=False)["idrc"]
-        .sum()
-        #.loc[lambda d: d.year != 2021]
+        idrc_constant.groupby(["year"], as_index=False)["idrc"].sum()
+        # .loc[lambda d: d.year != 2021]
     ).assign(donor_name="DAC Countries, Total")
 
     idrc_constant = pd.concat(
