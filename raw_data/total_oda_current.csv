@@ -1,4 +1,4 @@
-year,donor_code,flows_code,value,indicator,donor_name
+﻿year,donor_code,flows_code,value,indicator,donor_name
 2014,18,1140,1634.57,Total ODA,Finland
 2016,4,1140,9621.67,Total ODA,France
 2016,301,1140,3930.44,Total ODA,Canada
@@ -44,7 +44,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2014,302,1140,33095.5,Total ODA,United States
 2016,2,1140,2300.16,Total ODA,Belgium
 2015,820,1140,441.74,Total ODA,New Zealand
-2015,18,1140,1288.0,Total ODA,Finland
+2015,18,1140,1288,Total ODA,Finland
 2016,61,1140,81.3,Total ODA,Slovenia
 2017,820,1140,449.75,Total ODA,New Zealand
 2016,10,1140,4893.74,Total ODA,Sweden
@@ -104,7 +104,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2015,8,1140,4277.66,Total ODA,Norway
 2014,8,1140,5085.94,Total ODA,Norway
 2017,68,1140,304.12,Total ODA,Czech Republic
-2015,68,1140,199.0,Total ODA,Czech Republic
+2015,68,1140,199,Total ODA,Czech Republic
 2014,5,1140,16566.2,Total ODA,Germany
 2015,69,1140,84.91,Total ODA,Slovak Republic
 2016,820,1140,446.85,Total ODA,New Zealand
@@ -149,7 +149,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2018,1,1160,1168.53,Total ODA,Austria
 2018,701,1160,14163.52,Total ODA,Japan
 2020,6,1160,4248.38,Total ODA,Italy
-2021,820,1160,681.0,Total ODA,New Zealand
+2021,820,1160,681,Total ODA,New Zealand
 2020,68,1160,299.14,Total ODA,Czech Republic
 2020,10,1160,6348.62,Total ODA,Sweden
 2018,6,1160,5189.59,Total ODA,Italy
@@ -162,7 +162,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2021,7,1160,5287.55,Total ODA,Netherlands
 2021,2,1160,2571.4,Total ODA,Belgium
 2018,11,1160,3100.74,Total ODA,Switzerland
-2019,7,1160,5292.0,Total ODA,Netherlands
+2019,7,1160,5292,Total ODA,Netherlands
 2019,68,1160,309.2,Total ODA,Czech Republic
 2021,9,1160,449.66,Total ODA,Portugal
 2018,742,1160,2358.25,Total ODA,Korea
@@ -188,7 +188,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2018,76,1160,766.04,Total ODA,Poland
 2019,76,1160,776.56,Total ODA,Poland
 2020,40,1160,325.44,Total ODA,Greece
-2018,801,1160,3149.0,Total ODA,Australia
+2018,801,1160,3149,Total ODA,Australia
 2019,1,1160,1229.88,Total ODA,Austria
 2019,5,1160,24197.7,Total ODA,Germany
 2020,2,1160,2343.58,Total ODA,Belgium
@@ -225,7 +225,7 @@ year,donor_code,flows_code,value,indicator,donor_name
 2021,10,1160,5926.63,Total ODA,Sweden
 2021,6,1160,6016.81,Total ODA,Italy
 2018,21,1160,934.25,Total ODA,Ireland
-2018,18,1160,984.0,Total ODA,Finland
+2018,18,1160,984,Total ODA,Finland
 2019,801,1160,2888.43,Total ODA,Australia
 2018,7,1160,5658.97,Total ODA,Netherlands
 2020,1,1160,1273.35,Total ODA,Austria
