@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 import country_converter
 
@@ -38,8 +39,14 @@ def _get_list_of_elements(driver: webdriver.chrome) -> list:
     driver.get(UNHCR_URL)
     sleep(15)
 
+    # Get text element
+    text_element = driver.find_element(by=By.CLASS_NAME, value="textRun")
+    driver.execute_script("arguments[0].scrollIntoView();", text_element)
+    sleep(5)
+
     # Get element containing the data
     parent = driver.find_elements(by=By.CLASS_NAME, value="pivotTableCellWrap")
+    sleep(5)
 
     return [child.text for child in parent]
 
@@ -96,6 +103,8 @@ def get_unhcr_data() -> pd.DataFrame:
 
     # Get list of elements
     elements_list = _get_list_of_elements(driver)
+    # Clean elements list
+    elements_list = [str(item).replace("\n", "").strip() for item in elements_list]
 
     # Get neighbouring data
     neighbouring_df = _get_neighbouring_df(elements_list)
