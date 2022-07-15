@@ -21,16 +21,22 @@ def read_idrc():
 
 
 def idrc_as_share():
-
+    import numpy as np
     idrc = read_idrc()
     oda = read_oda()
 
-    return (
+    df = (
         idrc.merge(oda, on=["year", "donor_name"])
         .assign(share=lambda d: round(100 * d.idrc / d.total_oda, 1))
-        .filter(["year", "donor_name", "share"], axis=1)
         .rename(columns={"donor_name": "Donor"})
     )
+
+    dac = df.groupby(["year"], as_index=False).sum().drop("share", axis=1)
+    dac.loc[dac.year == 2021, "idrc"] = np.nan
+    dac['share'] = round(100 * dac.idrc / dac.total_oda, 1)
+    dac['Donor'] = 'DAC Countries, Total'
+
+    return pd.concat([dac, df], ignore_index=True)
 
 
 def idrc_constant_wide():
