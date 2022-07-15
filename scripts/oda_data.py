@@ -33,7 +33,7 @@ def idrc_as_share():
     )
 
     dac = df.groupby(["year"], as_index=False).sum().drop("share", axis=1)
-    #dac.loc[dac.year == 2021, "idrc"] = np.nan
+    # dac.loc[dac.year == 2021, "idrc"] = np.nan
     dac["share"] = round(100 * dac.idrc / dac.total_oda, 5)
     dac["Donor"] = "DAC Countries, Total"
 
