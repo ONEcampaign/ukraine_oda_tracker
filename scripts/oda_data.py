@@ -33,4 +33,4 @@ def idrc_as_share():
 
 if __name__ == "__main__":
     share = idrc_as_share()
-    share.to_csv(config.PATHS.output+"/idrc_share.csv", index=False)
+    share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
