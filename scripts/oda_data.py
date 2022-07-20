@@ -10,6 +10,11 @@ def read_oda():
         pd.read_csv(f"{config.PATHS.data}/total_oda_current.csv")
         .filter(["year", "donor_name", "value"], axis=1)
         .rename(columns={"value": "total_oda"})
+        .assign(
+            donor_name=lambda d: country_converter.convert(
+                d.donor_name, to="short_name"
+            )
+        )
     )
 
 
@@ -18,6 +23,11 @@ def read_idrc():
         pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv")
         .filter(["year", "donor_name", "value"], axis=1)
         .rename(columns={"value": "idrc"})
+        .assign(
+            donor_name=lambda d: country_converter.convert(
+                d.donor_name, to="short_name"
+            )
+        )
     )
 
 
@@ -26,6 +36,11 @@ def read_gni():
         pd.read_csv(f"{config.PATHS.data}/gni.csv")
         .filter(["year", "donor_name", "value"], axis=1)
         .rename(columns={"value": "gni"})
+        .assign(
+            donor_name=lambda d: country_converter.convert(
+                d.donor_name, to="short_name"
+            )
+        )
     )
 
 
