@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import pydeflate
 from country_converter import country_converter
@@ -96,6 +97,8 @@ def idrc_oda_chart() -> None:
         for d in [idrc, oda, gni]
     ]
 
+    idrc = idrc.sort_values(["year", "idrc"], ascending=(True, False))
+
     p1_countries = [
         "Canada",
         "United States",
@@ -120,6 +123,9 @@ def idrc_oda_chart() -> None:
             .assign(
                 idrc_gni=lambda d: round(100 * d.idrc / d.gni, 3),
                 oda_gni=lambda d: round(100 * d.total_oda / d.gni, 2),
+                pop_up=lambda d: d.apply(
+                    lambda x: "no_data" if x.oda_gni == np.nan else "", axis=1
+                ),
             )
             .rename(
                 columns={
