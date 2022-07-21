@@ -15,7 +15,7 @@ increasing aid budgets significantly.
 ### In-donor refugee costs
 We estimate average in-donor refugee costs per refugee per year by dividing the total ODA eligible in-donor refugee 
 costs reported by a donor country by the reported number of asylum applications over the last four years (2018-2021).
-The 2018-2021 timeframe is chosen reflect recent reporting practises, after the clarifications on reporting
+The 2018-2021 timeframe is chosen to reflect recent reporting practises, after the clarifications on reporting
 guidelines by the DAC Temporary Working Group on Refugees and Migration. 
 
 
