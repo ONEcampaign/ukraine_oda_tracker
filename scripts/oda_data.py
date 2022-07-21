@@ -121,9 +121,6 @@ def idrc_oda_chart() -> None:
             .assign(
                 idrc_gni=lambda d: round(100 * d.idrc / d.gni, 3),
                 oda_gni=lambda d: round(100 * d.total_oda / d.gni, 2),
-                pop_up=lambda d: d.apply(
-                    lambda x: "no_data" if x.year == 2022 else "", axis=1
-                ),
             )
             .rename(
                 columns={
