@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import pydeflate
 from country_converter import country_converter
@@ -79,7 +78,6 @@ def _pop_groups(list_: list, group_size: int) -> tuple[list, ...]:
 
 
 def idrc_oda_chart() -> None:
-
     # Read the different datasets that are needed for the chart
     idrc_est = read_idrc_estimates()
     idrc = pd.concat([read_idrc(), idrc_est], ignore_index=True)
@@ -124,7 +122,7 @@ def idrc_oda_chart() -> None:
                 idrc_gni=lambda d: round(100 * d.idrc / d.gni, 3),
                 oda_gni=lambda d: round(100 * d.total_oda / d.gni, 2),
                 pop_up=lambda d: d.apply(
-                    lambda x: "no_data" if x.oda_gni == np.nan else "", axis=1
+                    lambda x: "no_data" if x.year == 2022 else "", axis=1
                 ),
             )
             .rename(
@@ -144,7 +142,6 @@ def idrc_oda_chart() -> None:
 
 
 def idrc_as_share():
-
     idrc = read_idrc()
     oda = read_oda()
 
@@ -162,7 +159,6 @@ def idrc_as_share():
 
 
 def idrc_constant_wide():
-
     idrc = read_idrc()
 
     idrc_constant = pydeflate.deflate(
