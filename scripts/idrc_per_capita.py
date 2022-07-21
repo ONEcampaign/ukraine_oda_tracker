@@ -3,6 +3,8 @@ from bblocks.import_tools.unzip import read_zipped_csv
 import country_converter as coco
 import pydeflate
 
+from scripts.config import PATHS
+
 HIGH_LOW = "high"
 YEAR_START = 2018
 YEAR_END = 2021
@@ -85,14 +87,14 @@ def filter_dac(df: pd.DataFrame):
 
 
 def get_idrc():
-    return pd.read_csv("../raw_data/idrc.csv").loc[
-        lambda d: d.prices == "current", ["iso_code", "year", "value"]
-    ]
+    return pd.read_csv(f"{PATHS.data}/idrc.csv").filter(
+        ["iso_code", "year", "value"], axis=1
+    )
 
 
 def get_refugees():
     return (
-        pd.read_csv("../raw_data/refugees.csv")
+        pd.read_csv(f"{PATHS.data}/refugees.csv")
         .assign(iso_code=lambda d: coco.convert(d.Donor, to="ISO3"))
         .filter(["iso_code", "refugees"])
     )
