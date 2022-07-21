@@ -1,3 +1,4 @@
+"""Handle paths to files and working directories"""
 import os
 
 
@@ -21,4 +22,5 @@ class Paths:
         )
 
 
+# Variable with paths as properties
 PATHS = Paths(os.path.dirname(os.path.dirname(__file__)))

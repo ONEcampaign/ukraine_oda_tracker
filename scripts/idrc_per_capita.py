@@ -1,7 +1,7 @@
-import pandas as pd
-from bblocks.import_tools.unzip import read_zipped_csv
 import country_converter as coco
+import pandas as pd
 import pydeflate
+from bblocks.import_tools.unzip import read_zipped_csv
 
 from scripts.config import PATHS
 
@@ -74,7 +74,6 @@ def get_unhcr_data(low_or_high: str):
 
 
 def filter_dac(df: pd.DataFrame):
-
     from scripts.create_table import SHEETS
 
     dac = (
@@ -87,20 +86,28 @@ def filter_dac(df: pd.DataFrame):
 
 
 def get_idrc():
-    return pd.read_csv(f"{PATHS.data}/idrc.csv").filter(
-        ["iso_code", "year", "value"], axis=1
+    return (
+        pd.read_csv(f"{PATHS.data}/total_idrc_current.csv")
+        .assign(iso_code=lambda d: coco.convert(d.donor_name, to="ISO3"))
+        .filter(["iso_code", "year", "value"], axis=1)
     )
 
 
 def get_refugees():
-    return (
-        pd.read_csv(f"{PATHS.data}/refugees.csv")
-        .assign(iso_code=lambda d: coco.convert(d.Donor, to="ISO3"))
-        .filter(["iso_code", "refugees"])
+    url = (
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqAIxjSZ78fE93CP1K9K0t8rL"
+        "M2wi0z_nc60ezrUeDEIOPz-vr01SmmS_5nNnq_uPE0dM26m0V3rQK/pub?"
+        "gid=1604958206&single=true&output=csv"
     )
+    df = pd.read_csv(url).iloc[:, [1, 3]]
+    df.columns = ["iso_code", "refugees"]
+    df.refugees = df.refugees.str.replace(",", "").astype(float)
+
+    return df
 
 
 def pipeline():
+    """Run the full analysis"""
 
     # load refugees data
     refugees = get_unhcr_data(HIGH_LOW).pipe(filter_dac)
@@ -123,7 +130,7 @@ def pipeline():
         .assign(tot_cost_dfl=lambda d: round(d.value_idrc * 1e6 / d.value_ref, 1))
         .merge(get_refugees(), on=["iso_code"])
         .assign(
-            estimated_costs=lambda d: df.tot_cost_dfl * df.refugees,
+            estimated_costs=lambda d: d.tot_cost_dfl * d.refugees,
             country_name=lambda d: coco.convert(d.iso_code, to="short_name"),
         )
     )
@@ -131,5 +138,5 @@ def pipeline():
 
 
 if __name__ == "__main__":
-    # data = pipeline()
+    data = pipeline()
     pass

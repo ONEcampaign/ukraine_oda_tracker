@@ -82,7 +82,9 @@ def get_data(pages_dict: dict) -> dict[str, pd.DataFrame]:
 def __read_rows(
     df_: pd.DataFrame, date_col: str, amount_col: str, text_col: str
 ) -> list[tuple]:
+    """Read the rows in a given data frame and clean/format"""
 
+    # List to store row contents
     rows = []
 
     for _, row in df_.iterrows():
@@ -145,7 +147,8 @@ def _write_idrc(data: dict[str, pd.DataFrame]):
 
 
 def _write_cell(country_data: list) -> tuple:
-
+    """Write the content with each cell, adding the right syntax for Flourish popups
+    to work"""
     amount = 0
     text = ">>"
     source = ""
@@ -160,9 +163,6 @@ def _write_cell(country_data: list) -> tuple:
         if (row[3] is not None) and (row[0] is not None):
             source += f"{row[3]}<br>"
 
-    # if source[-4:] == "<br>":
-    #    source = source[:-4]
-
     if amount == 0:
         amount = ""
     else:
@@ -175,12 +175,18 @@ def _write_cell(country_data: list) -> tuple:
 
 
 def build_table(data: dict) -> pd.DataFrame:
+    """Build the table for the Flourish visualisation"""
 
+    # Get ODA pledged data
     oda_pledged = _write_oda_pledged(data)
+
+    # Get IDRC data
     idrc = _write_idrc(data)
 
+    # Create an empty data frame
     df = pd.DataFrame()
 
+    # For each donor, create the table data
     for donor in data:
 
         p = _write_cell(oda_pledged[donor])
@@ -228,6 +234,5 @@ def build_table(data: dict) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-
     raw_data = get_data(pages_dict=SHEETS)
-    df = build_table(raw_data)
+    table_data = build_table(raw_data)

@@ -28,16 +28,21 @@ def _get_workbook(
     authenticated_client: gspread.client.Client, workbook_key: str
 ) -> gspread.Spreadsheet:
     """Get workbook from Google Sheets API"""
+
     return authenticated_client.open_by_key(key=workbook_key)
 
 
 def _get_worksheet(
     workbook: gspread.Spreadsheet, worksheet_key: int
 ) -> gspread.Worksheet:
+    """Get worksheet from Google Sheets API"""
+
     return workbook.get_worksheet_by_id(id=worksheet_key)
 
 
 def df2gsheet(df: pd.DataFrame, worksheet_obj: gspread.Worksheet) -> None:
+    """Write dataframe to Google Sheets API"""
+
     columns = [str(col).replace("\n", "").strip() for col in df.columns]
     values = df.fillna("").values.tolist()
 
