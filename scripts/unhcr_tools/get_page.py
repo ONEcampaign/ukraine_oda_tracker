@@ -93,15 +93,13 @@ def _clean_df(df: pd.DataFrame) -> pd.DataFrame:
 
     # Change date format
     try:
-        df["Data Date"] = pd.to_datetime(
-            df["Data Date"], format="%m/%d/%Y"
-        )
-        
+        df["Data Date"] = pd.to_datetime(df["Data Date"], format="%m/%d/%Y")
+
         if df["Data Date"].max() > datetime.datetime.today():
             raise ValueError("Data date is in the future")
-            
+
         df["Data Date"] = df["Data Date"].dt.strftime("%d %B %Y")
-        
+
     except ValueError:
         df["Data Date"] = pd.to_datetime(
             df["Data Date"], format="%d/%m/%Y"
