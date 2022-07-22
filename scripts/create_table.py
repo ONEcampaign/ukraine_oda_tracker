@@ -218,8 +218,8 @@ def build_table(data: dict) -> pd.DataFrame:
     return (
         df.sort_values(
             by=[
-                "amount1",
                 "amount2",
+                "amount1",
                 "Donor",
             ],
             ascending=(False, False, True),
