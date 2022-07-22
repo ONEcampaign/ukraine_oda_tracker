@@ -199,7 +199,7 @@ def build_table(data: dict) -> pd.DataFrame:
 
         data = {
             "Estimated ODA pledged to Ukraine (USD millions)": p[0],
-            "Estimated In-donor Refugee Costs (USD millions)": i[0],
+            "Estimated in-donor refugee costs (USD millions)": i[0],
             "Source": source,
         }
 
@@ -208,26 +208,21 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-        df["amount1"] = df["Estimated ODA pledged to Ukraine (USD millions)"].apply(
-            lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
-        )
-        df["amount2"] = df["Estimated In-donor Refugee Costs (USD millions)"].apply(
-            lambda r: pd.to_numeric(r.split(">>")[0], errors="coerce")
+        df["amount2"] = df["Estimated in-donor refugee costs (USD millions)"].apply(
+            lambda r: pd.to_numeric(r.split(">>")[0].replace(",", ""), errors="coerce")
         )
 
     return (
         df.sort_values(
             by=[
                 "amount2",
-                "amount1",
-                "Donor",
             ],
-            ascending=(False, False, True),
+            ascending=False,
         )
-        .drop(columns=["amount1", "amount2"])
+        .drop(columns=["amount2"])
         .loc[
             lambda d: (d["Estimated ODA pledged to Ukraine (USD millions)"] != "")
-            | (d["Estimated In-donor Refugee Costs (USD millions)"] != "")
+            | (d["Estimated in-donor refugee costs (USD millions)"] != "")
             | (d["Source"] != ""),
         ]
     )
