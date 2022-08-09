@@ -199,7 +199,7 @@ def build_table(data: dict) -> pd.DataFrame:
 
         data = {
             "Estimated ODA pledged to Ukraine (USD millions)": p[0],
-            "Estimated in-donor refugee costs (USD millions)": i[0],
+            "Estimated Ukraine in-donor refugee costs (USD millions)": i[0],
             "Source": source,
         }
 
