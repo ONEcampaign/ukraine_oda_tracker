@@ -208,7 +208,9 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-        df["amount2"] = df["Estimated Ukraine in-donor refugee costs (USD millions)"].apply(
+        df["amount2"] = df[
+            "Estimated Ukraine in-donor refugee costs (USD millions)"
+        ].apply(
             lambda r: pd.to_numeric(r.split(">>")[0].replace(",", ""), errors="coerce")
         )
 
