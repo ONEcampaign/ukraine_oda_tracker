@@ -208,7 +208,7 @@ def build_table(data: dict) -> pd.DataFrame:
 
         df = df.filter(["Donor"] + list(data), axis=1)
 
-        df["amount2"] = df["Estimated in-donor refugee costs (USD millions)"].apply(
+        df["amount2"] = df["Estimated Ukraine in-donor refugee costs (USD millions)"].apply(
             lambda r: pd.to_numeric(r.split(">>")[0].replace(",", ""), errors="coerce")
         )
 
@@ -222,7 +222,7 @@ def build_table(data: dict) -> pd.DataFrame:
         .drop(columns=["amount2"])
         .loc[
             lambda d: (d["Estimated ODA pledged to Ukraine (USD millions)"] != "")
-            | (d["Estimated in-donor refugee costs (USD millions)"] != "")
+            | (d["Estimated Ukraine in-donor refugee costs (USD millions)"] != "")
             | (d["Source"] != ""),
         ]
     )
