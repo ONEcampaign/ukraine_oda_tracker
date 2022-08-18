@@ -1,7 +1,7 @@
 name: Update Ukraine ODA
 'on':
   schedule:
-    - cron: '5 8,10,12,14,16,20 * * 1-5'
+    - cron: '5 10 * * 1-5'
   workflow_dispatch:
 env:
   SHEETS_API: ${{ secrets.SHEETS_API }}
