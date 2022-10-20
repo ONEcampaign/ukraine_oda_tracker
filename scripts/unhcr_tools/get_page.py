@@ -25,7 +25,7 @@ def _get_driver() -> webdriver.chrome:
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
 
-    CHROME = ChromeDriverManager().install()
+    CHROME = ChromeDriverManager(version="106.0.5249.21").install()
 
     return webdriver.Chrome(service=Service(CHROME))
 
