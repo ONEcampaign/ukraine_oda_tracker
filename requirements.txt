@@ -5,6 +5,7 @@ country_converter
 pydeflate
 oauth2client
 gspread
+packaging
 selenium
 webdriver_manager
 numpy
