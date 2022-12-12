@@ -1,5 +1,5 @@
 import pandas as pd
-import pydeflate
+from pydeflate import deflate
 from country_converter import country_converter
 
 from scripts import config
@@ -184,7 +184,7 @@ def idrc_constant_wide():
     idrc = read_idrc()
 
     # Deflate to 2021 prices
-    idrc_constant = pydeflate.deflate(
+    idrc_constant = deflate(
         df=idrc.copy(deep=True),
         base_year=2021,
         source="oecd_dac",

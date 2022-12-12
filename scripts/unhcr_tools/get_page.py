@@ -1,16 +1,13 @@
 import datetime
 from time import sleep
 
+import country_converter
 import numpy as np
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-
-import country_converter
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 UNHCR_URL: str = (
     "https://app.powerbi.com/view?r=eyJrIjoiNzkyMjdmN2QtMjdlNy00YT"
@@ -25,7 +22,7 @@ def _get_driver() -> webdriver.chrome:
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
 
-    CHROME = ChromeDriverManager(version="106.0.5249.21").install()
+    CHROME = ChromeDriverManager().install()
 
     return webdriver.Chrome(service=Service(CHROME))
 
@@ -53,7 +50,6 @@ def _get_list_of_elements(driver: webdriver.chrome) -> list:
 
 
 def _get_neighbouring_df(elements_list: list) -> pd.DataFrame:
-
     neighbouring = np.array(elements_list[0:48]).reshape(
         int(len(elements_list[0:48]) / 6), 6
     )
@@ -65,7 +61,6 @@ def _get_neighbouring_df(elements_list: list) -> pd.DataFrame:
 
 
 def _get_other_df(elements_list: list) -> pd.DataFrame:
-
     other = np.array(elements_list[54:]).reshape(int(len(elements_list[54:]) / 4), 4)
 
     if other.shape != (39, 4):
@@ -75,7 +70,6 @@ def _get_other_df(elements_list: list) -> pd.DataFrame:
 
 
 def _clean_df(df: pd.DataFrame) -> pd.DataFrame:
-
     # Clean numbers
     df = df.apply(lambda row: row.str.replace(",", ""), axis=1)
 
