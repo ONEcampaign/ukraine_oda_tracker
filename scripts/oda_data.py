@@ -51,17 +51,37 @@ def read_oda():
     )
 
 
-def read_idrc():
-    """Read IDRC data from raw_data folder. This data comes from Table 1 from OECD DAC"""
-    return (
-        pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv")
-        .filter(["year", "donor_name", "value"], axis=1)
+def _create_idrc_data() -> None:
+    """Create the IDRC data export from DAC1 using oda_data"""
+
+    # import oda_data
+    from oda_data import ODAData, set_data_path
+    from oda_data.tools.groupings import donor_groupings
+
+    dac_donors = donor_groupings()["dac_countries"]
+
+    # set the data path
+    set_data_path(config.PATHS.data)
+
+    # Instantiate the ODAData class
+    oda = ODAData(years=range(2010, 2024), donors=list(dac_donors), include_names=True)
+
+    # Get the IDRC data
+    df = (
+        oda.load_indicator("idrc_flow")
+        .get_data()
         .rename(columns={"value": "idrc"})
-        .assign(
-            donor_name=lambda d: country_converter.convert(
-                d.donor_name, to="short_name"
-            )
-        )
+        .filter(["year", "donor_name", "idrc"], axis=1)
+    )
+
+    # Export the data
+    df.to_csv(f"{config.PATHS.data}/total_idrc_current.csv", index=False)
+
+
+def read_idrc():
+    """Read IDRC data from raw_data folder. This data com`es from Table 1 from OECD DAC"""
+    return pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv").assign(
+        donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
 
@@ -215,6 +235,9 @@ def idrc_constant_wide():
 
 
 if __name__ == "__main__":
+    # download fresh idrc data
+    _create_idrc_data()
+
     share = idrc_as_share()
     share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
 
