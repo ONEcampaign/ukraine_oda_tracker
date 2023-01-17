@@ -1,8 +1,13 @@
 import pandas as pd
-from pydeflate import deflate
 from country_converter import country_converter
+from oda_data import ODAData, set_data_path
+from oda_data.tools.groupings import donor_groupings
+from pydeflate import deflate
 
 from scripts import config
+
+# set the data path
+set_data_path(config.PATHS.data)
 
 
 def __export_df_page(
@@ -51,31 +56,50 @@ def read_oda():
     )
 
 
-def read_idrc():
-    """Read IDRC data from raw_data folder. This data comes from Table 1 from OECD DAC"""
+def _raw_oda_data(indicator: str) -> pd.DataFrame:
+    """Read the data for a specific indicator"""
+    dac_donors = donor_groupings()["dac_countries"]
+
+    # Instantiate the ODAData class
+    oda = ODAData(years=range(2010, 2024), donors=list(dac_donors), include_names=True)
+
+    # Get the IDRC data
     return (
-        pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv")
+        oda.load_indicator(indicator)
+        .get_data()
         .filter(["year", "donor_name", "value"], axis=1)
-        .rename(columns={"value": "idrc"})
-        .assign(
-            donor_name=lambda d: country_converter.convert(
-                d.donor_name, to="short_name"
-            )
-        )
     )
+
+
+def _create_idrc_data() -> None:
+    """Create the IDRC data export from DAC1 using oda_data"""
+
+    df = _raw_oda_data(indicator="idrc_flow").rename(columns={"value": "idrc"})
+
+    # Export the data
+    df.to_csv(f"{config.PATHS.data}/total_idrc_current.csv", index=False)
+
+
+def read_idrc():
+    """Read IDRC data from raw_data folder. This data com`es from Table 1 from OECD DAC"""
+    return pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv").assign(
+        donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
+    )
+
+
+def _create_gni_data() -> None:
+    """Create the GNI data export from DAC1 using oda_data"""
+
+    df = _raw_oda_data(indicator="gni").rename(columns={"value": "gni"})
+
+    # Export the data
+    df.to_csv(f"{config.PATHS.data}/gni.csv", index=False)
 
 
 def read_gni():
     """Read GNI data from raw_data folder. This data comes from Table 1 from OECD DAC"""
-    return (
-        pd.read_csv(f"{config.PATHS.data}/gni.csv")
-        .filter(["year", "donor_name", "value"], axis=1)
-        .rename(columns={"value": "gni"})
-        .assign(
-            donor_name=lambda d: country_converter.convert(
-                d.donor_name, to="short_name"
-            )
-        )
+    return pd.read_csv(f"{config.PATHS.data}/gni.csv").assign(
+        donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
 
@@ -170,7 +194,11 @@ def idrc_as_share():
         .rename(columns={"donor_name": "Donor"})
     )
 
-    dac = df.groupby(["year"], as_index=False).sum().drop("share", axis=1)
+    dac = (
+        df.groupby(["year"], as_index=False)
+        .sum(numeric_only=True)
+        .drop("share", axis=1)
+    )
     dac["share"] = round(100 * dac.idrc / dac.total_oda, 5)
     dac["Donor"] = "DAC Countries, Total"
 
@@ -215,6 +243,12 @@ def idrc_constant_wide():
 
 
 if __name__ == "__main__":
+    # download fresh idrc data
+    _create_idrc_data()
+
+    # download fresh gni data
+    _create_gni_data()
+
     share = idrc_as_share()
     share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
 
