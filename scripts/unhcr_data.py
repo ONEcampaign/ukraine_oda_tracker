@@ -139,7 +139,7 @@ def add_yearly_ratios(df: pd.DataFrame) -> pd.DataFrame:
     return df.fillna(0).drop(["month"], axis=1)
 
 
-def clean_hcr_data_download(df: pd.DataFrame) -> None:
+def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
     df["Data Date"] = pd.to_datetime(df["Data Date"])
     return df.astype({"Individual refugees from Ukraine recorded across Europe": int})
 
