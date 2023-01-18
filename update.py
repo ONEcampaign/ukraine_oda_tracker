@@ -1,6 +1,6 @@
 from scripts.create_table import get_data, SHEETS, build_table
 from scripts.oda_data import idrc_as_share, idrc_constant_wide, idrc_oda_chart
-from scripts.unhcr_data import load_hdrc_data
+from scripts.unhcr_data import load_hrc_data
 from scripts.config import PATHS
 from datetime import datetime
 from csv import writer
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Update hdrc data on google sheets
     if datetime.now().hour > 14:
         print("Updating google sheets")
-        load_hdrc_data()
+        load_hrc_data()
 
     # Update IDRC estimates charts
     share = idrc_as_share()
