@@ -4,6 +4,10 @@ import pydeflate
 from bblocks.import_tools.unzip import read_zipped_csv
 
 from scripts.config import PATHS
+from scripts.oda_data import read_idrc
+
+from bblocks.dataframe_tools.add import add_iso_codes_column
+
 
 HIGH_LOW = "high"
 YEAR_START = 2018
@@ -70,7 +74,11 @@ def get_unhcr_data(low_or_high: str):
     else:
         raise ValueError('low_or_high must be "low" or "high"')
 
-    return df[df.app_type.isin(f_)].groupby(["year", "iso_code"], as_index=False).sum()
+    return (
+        df[df.app_type.isin(f_)]
+        .groupby(["year", "iso_code"], as_index=False)
+        .sum(numeric_only=True)
+    )
 
 
 def filter_dac(df: pd.DataFrame):
@@ -85,11 +93,15 @@ def filter_dac(df: pd.DataFrame):
     return df[df.iso_code.isin(dac.iso_code)].set_index("iso_code")
 
 
-def get_idrc():
-    return (
-        pd.read_csv(f"{PATHS.data}/total_idrc_current.csv")
-        .assign(iso_code=lambda d: coco.convert(d.donor_name, to="ISO3"))
-        .filter(["iso_code", "year", "value"], axis=1)
+def read_hcr_data() -> pd.DataFrame:
+    """Read the locally saved HCR data"""
+
+    return pd.read_csv(f"{PATHS.output}/hcr_data.csv").rename(
+        columns={
+            "Individual refugees from Ukraine recorded across Europe": "value",
+            "Country": "country",
+            "Data Date": "date",
+        }
     )
 
 
@@ -106,37 +118,67 @@ def get_refugees():
     return df
 
 
+def yearly_refugees_spending(
+    cost_data: pd.DataFrame, refugee_data: pd.DataFrame
+) -> pd.DataFrame:
+
+    data = refugee_data.merge(cost_data, on=["iso_code"], how="left")
+
+    data = data.assign(
+        cost22=lambda d: d["difference"] * d.ratio22 * d.tot_cost_dfl,
+        cost23=lambda d: d["difference"] * d.ratio23 * d.tot_cost_dfl,
+        cost24=lambda d: d["difference"] * d.ratio24 * d.tot_cost_dfl,
+    )
+
+    return data.groupby(["iso_code"], as_index=False)[
+        ["difference", "cost22", "cost23", "cost24"]
+    ].sum(numeric_only=True)
+
+
 def pipeline():
     """Run the full analysis"""
 
     # load refugees data
     refugees = get_unhcr_data(HIGH_LOW).pipe(filter_dac)
 
+    # load IDRC data
+    idrc = (
+        read_idrc()
+        .rename(columns={"idrc": "value"})
+        .pipe(add_iso_codes_column, id_column="donor_name", id_type="regex")
+    ).drop(columns=["donor_name"])
+
     # load and deflate idrc data
-    idrc = get_idrc().pipe(
+    idrc = idrc.pipe(
         pydeflate.deflate,
         base_year=2021,
         source="oecd_dac",
+        id_column="iso_code",
+        id_type="ISO3",
         date_column="year",
         target_col="value",
     )
 
-    df = idrc.merge(refugees, on=["iso_code", "year"], suffixes=["_idrc", "_ref"])
+    # combine the idrc and refugees data
+    df = idrc.merge(refugees, on=["iso_code", "year"], suffixes=("_idrc", "_ref"))
 
+    # Filter and calculate per capita
     df = (
-        df.loc[lambda d: d.year.isin(range(YEAR_START, YEAR_END))]
+        df.loc[lambda d: d.year.isin(range(YEAR_START, YEAR_END + 1))]
         .groupby(["iso_code"], as_index=False)[["value_idrc", "value_ref"]]
-        .sum()
+        .sum(numeric_only=True)
         .assign(tot_cost_dfl=lambda d: round(d.value_idrc * 1e6 / d.value_ref, 1))
-        .merge(get_refugees(), on=["iso_code"])
-        .assign(
-            estimated_costs=lambda d: d.tot_cost_dfl * d.refugees,
-            country_name=lambda d: coco.convert(d.iso_code, to="short_name"),
-        )
+        .filter(["iso_code", "tot_cost_dfl"], axis=1)
     )
-    return df
+
+    refugee_data = read_hcr_data().pipe(filter_dac)
+
+    # Calculate estimated yearly costs
+    return yearly_refugees_spending(cost_data=df, refugee_data=refugee_data).rename(
+        columns={"difference": "refugees"}
+    )
 
 
 if __name__ == "__main__":
     data = pipeline()
-    pass
+    ...
