@@ -144,6 +144,11 @@ def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
     return df.astype({"Individual refugees from Ukraine recorded across Europe": int})
 
 
+def save_hcr_data(df: pd.DataFrame) -> None:
+    """Save output as a CSV in output folder"""
+    df.to_csv(r'../output/hcr_data.csv')
+
+
 def hcr_data_pipeline() -> pd.DataFrame:
     """Load and process HCR data"""
 
@@ -164,6 +169,9 @@ def hcr_data_pipeline() -> pd.DataFrame:
 
     # Change the date format
     data["Data Date"] = data["Data Date"].dt.strftime("%m-%Y")
+
+    # Save data to output folder as csv
+    save_hcr_data(df=data)
 
     return data
 
