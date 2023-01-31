@@ -146,7 +146,7 @@ def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
 
 def save_hcr_data(df: pd.DataFrame) -> None:
     """Save output as a CSV in output folder"""
-    df.to_csv(r'../output/hcr_data.csv')
+    df.to_csv(r"../output/hcr_data.csv")
 
 
 def hcr_data_pipeline() -> pd.DataFrame:
