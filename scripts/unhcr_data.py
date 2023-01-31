@@ -151,7 +151,7 @@ def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
 
 def save_hcr_data(df: pd.DataFrame) -> None:
     """Save output as a CSV in output folder"""
-    df.to_csv(f"{config.PATHS.output}/hcr_data.csv")
+    df.to_csv(f"{config.PATHS.output}/hcr_data.csv", index=False)
 
 
 def hcr_data_pipeline() -> pd.DataFrame:
@@ -200,9 +200,6 @@ def hcr_data_pipeline() -> pd.DataFrame:
 def upload_hcr_data() -> None:
     # Get data from UNHCR
     data = hcr_data_pipeline()
-
-    # Save a copy of the data locally
-    data.to_csv(f"{config.PATHS.output}/hcr_data.csv", index=False)
 
     # Authenticate and load worksheet
     auth = _authenticate()
