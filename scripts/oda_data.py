@@ -81,7 +81,7 @@ def _create_idrc_data() -> None:
 
 
 def read_idrc():
-    """Read IDRC data from raw_data folder. This data com`es from Table 1 from OECD DAC"""
+    """Read IDRC data from raw_data folder. This data comes from Table 1 from OECD DAC"""
     return pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv").assign(
         donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
@@ -102,8 +102,7 @@ def read_gni():
         donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
-
-def read_idrc_estimates():
+def read_idrc_estimates() -> pd.DataFrame:
     """Read our estimates from the GoogleSheet which summarises the analysis"""
     url = (
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqAIxjSZ78fE93CP1K9K0t8rL"
@@ -111,14 +110,37 @@ def read_idrc_estimates():
         "&single=true&output=csv"
     )
     return (
-        pd.read_csv(url)
-        .assign(
-            donor_name=lambda d: country_converter.convert(d.iso_code, to="short_name"),
-            year=2022,
-        )
-        .rename(columns={"estimated_idrc": "idrc"})
-        .drop("iso_code", axis=1)
+        df=pd.read_csv(url).assign(donor_name=lambda d: country_converter.convert(d.iso_code, to="short_name"),
+            year=2022).rename(columns={"estimated_idrc": "idrc"}).drop("iso_code", axis=1)
     )
+
+
+def read_idrc_annual_ratios() -> pd.DataFrame:
+    """Read our estimates from the CSV which provides ratios of IDRC expenditure for 2022, 2023 and 2024"""
+
+    return (
+        pd.read_csv(f"{config.PATHS.output}/hcr_data.csv").rename(columns={"Country": "donor_name"}).assign(donor_name=lambda d: country_converter.convert(d.iso_code, to="short_name"))
+            )
+
+
+def estimate_annual_idrc(df: pd.DataFrame) -> df.DataFrame:
+    """Calculate estimates for annual idrc. Multiply average IDRC by difference and ratio for each month"""
+
+    # Merge DataFrames for calculations (Q: does this break single responsibility? Feels excessive to have this as its own function)
+    df_idrc_estimates = read_idrc_estimates()
+    df_idrc_ratios =  read_idrc_annual_ratios()
+    df = pd.merge(df_idrc_ratios, df_idrc_estimates, on="donor_name").drop("year", axis=1)
+
+    # Calculate IDRC estimates for 2022, 2023 and 2024
+    df["cost22"]=df["difference"]*["ratio22"]*["idrc"]
+    df["cost23"]=df["difference"]*["ratio23"]*["idrc"]
+    df["cost24"]=df["difference"]*["ratio24"]*["idrc"]
+
+    # Drop irrelevant columns
+    df = df.drop(["ratio22","ratio23","ratio24","Individual refugees from Ukraine recorded across Europe","difference"], axis=1)
+
+    return()
+    # Don't really understand how the return part works at the end. Here, would I say return df? or assign df to a new dataframe to be stored, given df is used loads.
 
 
 def _pop_groups(list_: list, group_size: int) -> tuple[list, ...]:
