@@ -121,7 +121,6 @@ def get_refugees():
 def yearly_refugees_spending(
     cost_data: pd.DataFrame, refugee_data: pd.DataFrame
 ) -> pd.DataFrame:
-
     data = refugee_data.merge(cost_data, on=["iso_code"], how="left")
 
     data = data.assign(

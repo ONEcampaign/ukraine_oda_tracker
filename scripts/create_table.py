@@ -188,7 +188,6 @@ def build_table(data: dict) -> pd.DataFrame:
 
     # For each donor, create the table data
     for donor in data:
-
         p = _write_cell(oda_pledged[donor])
         i = _write_cell(idrc[donor])
 
