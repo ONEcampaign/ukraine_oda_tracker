@@ -223,7 +223,15 @@ def upload_ukraine_refugee_data() -> None:
         .merge(idrc_per_capita, on=["iso_code"], how="left")
         .assign(donor_name=lambda d: coco.convert(d.iso_code, to="name_short"))
         .filter(
-            ["iso_code", "donor_name", "total_refugees", "cost22", "cost23", "cost24"],
+            [
+                "iso_code",
+                "donor_name",
+                "total_refugees",
+                "cost22",
+                "cost23",
+                "cost24",
+                "tot_cost_dfl",
+            ],
             axis=1,
         )
     )
