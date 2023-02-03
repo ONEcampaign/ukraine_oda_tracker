@@ -1,5 +1,8 @@
 from scripts.create_table import get_data, SHEETS, build_table
-from scripts.idrc_per_capita import update_refugee_cost_data, upload_ukraine_refugee_data
+from scripts.idrc_per_capita import (
+    update_refugee_cost_data,
+    upload_ukraine_refugee_data,
+)
 from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart
 from scripts.unhcr_data import update_ukraine_hcr_data
 from scripts.config import PATHS

@@ -13,11 +13,11 @@ set_data_path(config.PATHS.data)
 
 
 def __export_df_page(
-        page: int,
-        page_countries: list,
-        idrc: pd.DataFrame,
-        oda: pd.DataFrame,
-        gni: pd.DataFrame,
+    page: int,
+    page_countries: list,
+    idrc: pd.DataFrame,
+    oda: pd.DataFrame,
+    gni: pd.DataFrame,
 ) -> None:
     """Helper function to export the individual pages"""
     _ = (
