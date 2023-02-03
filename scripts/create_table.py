@@ -230,5 +230,6 @@ def build_table(data: dict) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    raw_data = get_data(pages_dict=SHEETS)
-    table_data = build_table(raw_data)
+    # raw_data = get_data(pages_dict=SHEETS)
+    # table_data = build_table(raw_data)
+    ...

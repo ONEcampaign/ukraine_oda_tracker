@@ -1,6 +1,7 @@
 from scripts.create_table import get_data, SHEETS, build_table
-from scripts.oda_data import idrc_as_share, idrc_constant_wide, idrc_oda_chart
-from scripts.unhcr_data import load_hrc_data
+from scripts.idrc_per_capita import update_refugee_cost_data, upload_ukraine_refugee_data
+from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart
+from scripts.unhcr_data import update_ukraine_hcr_data
 from scripts.config import PATHS
 from datetime import datetime
 from csv import writer
@@ -17,24 +18,29 @@ def last_updated():
 
 
 if __name__ == "__main__":
-    # Build table
-    raw_data = get_data(pages_dict=SHEETS)
-    df = build_table(raw_data)
-    df.to_csv(f"{PATHS.output}/table.csv", index=False)
+    # Update Ukraine refugees data
+    update_ukraine_hcr_data()
 
-    # Update hdrc data on google sheets
-    if datetime.now().hour > 14:
-        print("Updating google sheets")
-        load_hrc_data()
+    # Update refugee cost calculations
+    update_refugee_cost_data()
+    # push updates to google sheets
+    upload_ukraine_refugee_data()
 
     # Update IDRC estimates charts
     share = idrc_as_share()
     share.to_csv(PATHS.output + "/idrc_share.csv", index=False)
 
+    # Update IDRC constant chart
     idrc_const = idrc_constant_wide()
     idrc_const.to_csv(PATHS.output + "/idrc_constant.csv", index=False)
 
+    # Update IDRC ODA chart
     idrc_oda_chart()
+
+    # Build table
+    raw_data = get_data(pages_dict=SHEETS)
+    df = build_table(raw_data)
+    df.to_csv(f"{PATHS.output}/table.csv", index=False)
 
     # Update last updated date
     last_updated()

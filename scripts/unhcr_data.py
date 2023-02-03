@@ -154,11 +154,8 @@ def save_hcr_data(df: pd.DataFrame) -> None:
     df.to_csv(f"{config.PATHS.output}/hcr_data.csv", index=False)
 
 
-def hcr_data_pipeline() -> pd.DataFrame:
-    """Load and process HCR data"""
-
-    # manual data
-    manual_data = (
+def read_manual_ukraine_refugee_data() -> pd.DataFrame:
+    return (
         pd.read_csv(f"{config.PATHS.data}/non-eu-refugees.csv", parse_dates=["date"])
         .astype({"value": int})
         .assign(date=lambda d: pd.to_datetime(d.date, format="%B-%y"))
@@ -171,6 +168,13 @@ def hcr_data_pipeline() -> pd.DataFrame:
             axis=1,
         )
     )
+
+
+def update_ukraine_hcr_data() -> None:
+    """Load and process HCR data"""
+
+    # manual data
+    manual_data = read_manual_ukraine_refugee_data()
 
     # Get the latest data from the UNHCR website and clean the data types
     new_data = get_unhcr_data().pipe(clean_hcr_data_download)
@@ -194,38 +198,6 @@ def hcr_data_pipeline() -> pd.DataFrame:
     # Save data to output folder as csv
     save_hcr_data(df=data)
 
-    return data
-
-
-def upload_hcr_data() -> None:
-    # Get data from UNHCR
-    data = hcr_data_pipeline()
-
-    # Authenticate and load worksheet
-    auth = _authenticate()
-    wb = _get_workbook(auth, WORKBOOK_KEY)
-    sheet = _get_worksheet(wb, WORKSHEET_KEY_NEW)
-
-    # Upload data
-    df2gsheet(data, sheet)
-
-
-def load_hrc_data() -> None:
-    """Load data to google docs"""
-
-    # Get data from UNHCR
-    data = get_unhcr_data()
-
-    # Authenticate and load worksheet
-    auth = _authenticate()
-    wb = _get_workbook(auth, WORKBOOK_KEY)
-    sheet = _get_worksheet(wb, WORKSHEET_KEY)
-
-    # Upload data
-    df2gsheet(data, sheet)
-
 
 if __name__ == "__main__":
-    # load_hrc_data()
-    upload_hcr_data()
-    ...
+    update_ukraine_hcr_data()

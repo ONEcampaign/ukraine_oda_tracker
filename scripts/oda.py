@@ -1,21 +1,23 @@
 import pandas as pd
+from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
 from oda_data import ODAData, set_data_path
 from oda_data.tools.groupings import donor_groupings
 from pydeflate import deflate
 
 from scripts import config
+from scripts.config import PATHS
 
 # set the data path
 set_data_path(config.PATHS.data)
 
 
 def __export_df_page(
-    page: int,
-    page_countries: list,
-    idrc: pd.DataFrame,
-    oda: pd.DataFrame,
-    gni: pd.DataFrame,
+        page: int,
+        page_countries: list,
+        idrc: pd.DataFrame,
+        oda: pd.DataFrame,
+        gni: pd.DataFrame,
 ) -> None:
     """Helper function to export the individual pages"""
     _ = (
@@ -25,8 +27,9 @@ def __export_df_page(
         .loc[lambda d: d.donor_name.isin(page_countries)]
         .reset_index(drop=True)
         .assign(
-            idrc_gni=lambda d: round(100 * d.idrc / d.gni, 3),
-            oda_gni=lambda d: round(100 * d.total_oda / d.gni, 2),
+            idrc_gni=lambda d: round(100 * d.idrc.fillna(0) / d.gni, 3),
+            oda_gni=lambda d: round(100 * d.total_oda.fillna(0) / d.gni, 2),
+            year=lambda d: d.year.astype("Int32"),
         )
         .rename(
             columns={
@@ -38,7 +41,25 @@ def __export_df_page(
                 "gni": "GNI",
             }
         )
-    ).to_csv(f"{config.PATHS.output}/idrc_oda_chart_{page}.csv", index=False)
+        .filter(
+            [
+                "year",
+                "Donor",
+                "In-Donor Refugee Costs",
+                "Total ODA",
+                "GNI",
+                "IDRC as a share of GNI",
+                "ODA as a share of GNI",
+            ],
+            axis=1,
+        )
+    )
+    _.loc[
+        lambda d: d.year >= 2022,
+        ["Total ODA", "GNI", "ODA as a share of GNI", "IDRC as a share of GNI"],
+    ] = pd.NA
+
+    _.to_csv(f"{config.PATHS.output}/idrc_oda_chart_{page}.csv", index=False)
 
 
 def read_oda():
@@ -102,46 +123,6 @@ def read_gni():
         donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
-def read_idrc_estimates() -> pd.DataFrame:
-    """Read our estimates from the GoogleSheet which summarises the analysis"""
-    url = (
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqAIxjSZ78fE93CP1K9K0t8rL"
-        "M2wi0z_nc60ezrUeDEIOPz-vr01SmmS_5nNnq_uPE0dM26m0V3rQK/pub?gid=1887834724"
-        "&single=true&output=csv"
-    )
-    return (
-        df=pd.read_csv(url).assign(donor_name=lambda d: country_converter.convert(d.iso_code, to="short_name"),
-            year=2022).rename(columns={"estimated_idrc": "idrc"}).drop("iso_code", axis=1)
-    )
-
-
-def read_idrc_annual_ratios() -> pd.DataFrame:
-    """Read our estimates from the CSV which provides ratios of IDRC expenditure for 2022, 2023 and 2024"""
-
-    return (
-        pd.read_csv(f"{config.PATHS.output}/hcr_data.csv").rename(columns={"Country": "donor_name"}).assign(donor_name=lambda d: country_converter.convert(d.iso_code, to="short_name"))
-            )
-
-
-def estimate_annual_idrc(df: pd.DataFrame) -> df.DataFrame:
-    """Calculate estimates for annual idrc. Multiply average IDRC by difference and ratio for each month"""
-
-    # Merge DataFrames for calculations (Q: does this break single responsibility? Feels excessive to have this as its own function)
-    df_idrc_estimates = read_idrc_estimates()
-    df_idrc_ratios =  read_idrc_annual_ratios()
-    df = pd.merge(df_idrc_ratios, df_idrc_estimates, on="donor_name").drop("year", axis=1)
-
-    # Calculate IDRC estimates for 2022, 2023 and 2024
-    df["cost22"]=df["difference"]*["ratio22"]*["idrc"]
-    df["cost23"]=df["difference"]*["ratio23"]*["idrc"]
-    df["cost24"]=df["difference"]*["ratio24"]*["idrc"]
-
-    # Drop irrelevant columns
-    df = df.drop(["ratio22","ratio23","ratio24","Individual refugees from Ukraine recorded across Europe","difference"], axis=1)
-
-    return()
-    # Don't really understand how the return part works at the end. Here, would I say return df? or assign df to a new dataframe to be stored, given df is used loads.
-
 
 def _pop_groups(list_: list, group_size: int) -> tuple[list, ...]:
     """Split a list into groups of size group_size"""
@@ -160,22 +141,70 @@ def _pop_groups(list_: list, group_size: int) -> tuple[list, ...]:
     return tuple(groups)
 
 
+def read_refugee_cost_data() -> pd.DataFrame:
+    """Read the saved refugee cost data"""
+    return pd.read_csv(f"{PATHS.output}/ukraine_refugee_cost_estimates.csv")
+
+
 def idrc_oda_chart() -> None:
     """Build the CSVs used by the ODA IDRC chart"""
 
     # Read the different datasets that are needed for the chart
-    idrc_est = read_idrc_estimates()
-    idrc = pd.concat([read_idrc(), idrc_est], ignore_index=True)
-    oda = read_oda()
-    gni = read_gni()
+    idrc_est = (
+        read_refugee_cost_data()
+        .drop(["total_refugees"], axis=1)
+        .rename(columns={"cost22": 2022, "cost23": 2023, "cost24": 2024})
+        .melt(id_vars=["iso_code"], var_name="year", value_name="idrc")
+        .assign(idrc=lambda d: d.idrc / 1e6)
+    )
+    idrc_hist = (
+        read_idrc()
+        .pipe(add_iso_codes_column, id_column="donor_name", id_type="regex")
+        .filter(["iso_code", "year", "idrc"], axis=1)
+    )
 
-    # Assign the 2021 GNI value to 2022
-    gni22 = gni.copy(deep=True).loc[lambda d: d.year == 2021].assign(year=2022)
-    gni = pd.concat([gni, gni22], ignore_index=True)
+    idrc_latest = idrc_hist.query("year == year.max()").drop("year", axis=1)
+
+    # Add the latest IDRC data to the estimated data
+    idrc_est = (
+        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
+        .assign(
+            idrc=lambda d: d.apply(
+                lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1
+            )
+        )
+        .drop("idrc_latest", axis=1)
+    )
+
+    # Combine the historical and estimated data
+    idrc = pd.concat([idrc_hist, idrc_est], ignore_index=True).assign(
+        idrc=lambda d: d.idrc.apply(lambda x: x if x > 1 else pd.NA)
+    )
+
+    # add the donor names
+    idrc = idrc.assign(
+        donor_name=lambda d: country_converter.convert(d.iso_code, to="name_short")
+    ).drop("iso_code", axis=1)
+
+    # Read the other datasets
+    oda = read_oda().assign(
+        donor_name=lambda d: country_converter.convert(d.donor_name, to="name_short")
+    )
+    gni = read_gni().assign(
+        donor_name=lambda d: country_converter.convert(d.donor_name, to="name_short")
+    )
+
+    # Assign the 2021 GNI value to 2022, 2023 and 2024
+    dfs = [
+        gni.copy(deep=True).loc[lambda d: d.year == 2021].assign(year=y)
+        for y in [2022, 2023, 2024]
+    ]
+    gni = pd.concat([gni, *dfs], ignore_index=True)
 
     # Filter and sort the dataframes
     idrc, oda, gni = [
-        d.loc[d.year.isin([2012, 2016, 2021, 2022])]
+        d.astype({"year": "Int32"})
+        .loc[d.year.isin([2012, 2016, 2021, 2022, 2023, 2024])]
         .sort_values(["year", "donor_name"])
         .reset_index(drop=True)
         for d in [idrc, oda, gni]
@@ -265,16 +294,18 @@ def idrc_constant_wide():
 
 
 if __name__ == "__main__":
-    # download fresh idrc data
-    _create_idrc_data()
-
-    # download fresh gni data
-    _create_gni_data()
-
-    share = idrc_as_share()
-    share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
-
-    idrc_const = idrc_constant_wide()
-    idrc_const.to_csv(config.PATHS.output + "/idrc_constant.csv", index=False)
-
+    ...
     idrc_oda_chart()
+    # # download fresh idrc data
+    # _create_idrc_data()
+    #
+    # # download fresh gni data
+    # _create_gni_data()
+    #
+    # share = idrc_as_share()
+    # share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
+    #
+    # idrc_const = idrc_constant_wide()
+    # idrc_const.to_csv(config.PATHS.output + "/idrc_constant.csv", index=False)
+    #
+    # idrc_oda_chart()
