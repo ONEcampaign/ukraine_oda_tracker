@@ -259,43 +259,84 @@ def idrc_as_share():
 def idrc_constant_wide():
     """Build the CSV used by the IDRC constant prices chart"""
 
-    # Read the data
-    idrc = read_idrc()
+    # Read the different datasets that are needed for the chart
+    idrc_est = (
+        read_refugee_cost_data()
+        .drop(["total_refugees"], axis=1)
+        .rename(columns={"cost22": 2022, "cost23": 2023, "cost24": 2024})
+        .melt(id_vars=["iso_code"], var_name="year", value_name="idrc")
+        .assign(idrc=lambda d: d.idrc / 1e6)
+    )
+    idrc_hist = (
+        read_idrc()
+        .pipe(add_iso_codes_column, id_column="donor_name", id_type="regex")
+        .filter(["iso_code", "year", "idrc"], axis=1)
+    )
 
     # Deflate to 2021 prices
-    idrc_constant = deflate(
-        df=idrc.copy(deep=True),
+    idrc_hist = deflate(
+        df=idrc_hist.copy(deep=True),
         base_year=2021,
         source="oecd_dac",
-        id_column="donor_name",
-        id_type="regex",
+        id_column="iso_code",
+        id_type="ISO3",
         date_column="year",
         source_col="idrc",
         target_col="idrc",
     )
 
+    idrc_latest = idrc_hist.query("year == year.max()").drop("year", axis=1)
+
+    # Add the latest IDRC data to the estimated data
+    idrc_est = (
+        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
+        .assign(
+            idrc=lambda d: d.apply(
+                lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1
+            )
+        )
+        .drop("idrc_latest", axis=1)
+    )
+
+    # Combine the historical and estimated data
+    idrc = pd.concat([idrc_hist, idrc_est], ignore_index=True).assign(
+        idrc=lambda d: d.idrc.apply(lambda x: x if x > 0.0001 else pd.NA)
+    )
+
+    # add the donor names
+    idrc = idrc.assign(
+        donor_name=lambda d: country_converter.convert(d.iso_code, to="name_short")
+    ).drop("iso_code", axis=1)
+
     # Calculate dac total
-    dac_total = (idrc_constant.groupby(["year"], as_index=False)["idrc"].sum()).assign(
+    dac_total = (idrc.groupby(["year"], as_index=False)["idrc"].sum()).assign(
         donor_name="DAC Countries, Total"
     )
 
     # Merge with the original dataframe
-    idrc_constant = pd.concat(
-        [dac_total, idrc_constant], ignore_index=True
-    ).sort_values(["idrc"], ascending=False)
+    idrc_constant = (
+        pd.concat([dac_total, idrc], ignore_index=True)
+        .sort_values(["idrc"], ascending=False)
+        .astype({"year": "Int32"})
+    )
 
     order = idrc_constant.donor_name.unique()
 
-    return (
+    data = (
         idrc_constant.pivot(index="year", columns="donor_name", values="idrc")
         .filter(order, axis=1)
         .reset_index()
+        .loc[lambda d: d.year >= 2012]
     )
+
+    data.to_csv(config.PATHS.output + "/idrc_over_time_constant.csv", index=False)
 
 
 if __name__ == "__main__":
     ...
     idrc_oda_chart()
+
+    idrc_constant_wide()
     # # download fresh idrc data
     # _create_idrc_data()
     #
