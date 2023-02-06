@@ -214,11 +214,23 @@ def upload_ukraine_refugee_data() -> None:
     # Get the latest Ukraine refugees data
     ukraine_data = read_ukriane_hcr_data().pipe(filter_dac)
 
+    # get latest dates
+    latest_date = (
+        ukraine_data.assign(date=lambda d: pd.to_datetime(d.date, format="%m-%Y"))
+        .groupby(["iso_code"])[["date"]]
+        .max()
+        .assign(date=lambda d: d.date.dt.strftime("%B %Y"))
+        .to_dict()["date"]
+    )
+
     # Calculate the yearly spending on refugees
     data = (
         yearly_refugees_spending(cost_data=idrc_per_capita, refugee_data=ukraine_data)
         .merge(idrc_per_capita, on=["iso_code"], how="left")
-        .assign(donor_name=lambda d: coco.convert(d.iso_code, to="name_short"))
+        .assign(
+            donor_name=lambda d: coco.convert(d.iso_code, to="name_short"),
+            latest_date=lambda d: d.iso_code.map(latest_date),
+        )
         .filter(
             [
                 "iso_code",
@@ -228,6 +240,7 @@ def upload_ukraine_refugee_data() -> None:
                 "cost23",
                 "cost24",
                 "tot_cost_dfl",
+                "latest_date",
             ],
             axis=1,
         )
