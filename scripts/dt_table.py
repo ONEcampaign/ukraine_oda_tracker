@@ -40,8 +40,11 @@ def read_dt_data() -> json:
 
 
 def _clean_content(content: str) -> str:
+    """Remove the markdown formatting in favour of plain text"""
+
     import re
 
+    # remove acronym notes, highlight ukraine and remove titles, breaklines, etc
     new_content = (
         re.sub(r":abbr\[(.*?)\]", r"\1", content)
         .replace("Ukraine", "<strong>Ukraine</strong>")
@@ -51,6 +54,7 @@ def _clean_content(content: str) -> str:
         .replace(r"\\n", "")
     )
 
+    # Clean the output
     new_content = re.sub(rf".\\", "", new_content)
     new_content = re.sub(r"\n", " .", new_content)
     new_content = re.sub(r"\\", "", new_content)
@@ -60,7 +64,7 @@ def _clean_content(content: str) -> str:
 
 
 def _shorten_content(content: str, char_count: int = 200) -> str:
-    """Shorten content to 300 characters"""
+    """Shorten content to char_count characters"""
 
     if len(content) > char_count:
         return _clean_content(content[:char_count] + "...")
@@ -68,7 +72,7 @@ def _shorten_content(content: str, char_count: int = 200) -> str:
 
 
 def _convert_slug(df: pd.DataFrame) -> str:
-    """Convert slug to Donor Tracker URL"""
+    """Convert slug to Donor Tracker URL and encapsulate in a "read more" link"""
     return (
         f'<strong><a href="https://donortracker.org/policy_updates?policy={df.slug}" '
         f'target="_blank" rel="noopener noreferrer">'
@@ -77,7 +81,7 @@ def _convert_slug(df: pd.DataFrame) -> str:
 
 
 def title_break_date(df: pd.DataFrame) -> str:
-    """Break title and date into separate columns"""
+    """Make a column with title linebreak date"""
     return f"<strong>{df.title}</strong><br>{df.publish_date}"
 
 
