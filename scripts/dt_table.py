@@ -103,12 +103,3 @@ def dt_data_to_df(dt_data: json) -> pd.DataFrame:
     df = pd.DataFrame(dt_data["data"]).pipe(clean_dt_data)
 
     return df
-
-
-data = read_dt_data()
-
-data = dt_data_to_df(data)
-
-data.to_clipboard(index=False)
-
-data.to_csv(config.PATHS.output + "/dt_table.csv", index=False)
