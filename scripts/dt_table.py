@@ -5,22 +5,10 @@ import requests
 
 from scripts import config
 
-ARTICLE_COUNT: int = 50
-
-DT_BASE: str = (
-    "https://cms.donortracker.org/items/policy_updates?fields=title&fields=slug&"
-    "fields=publish_date&fields=content&fields=sources&fields="
-    "funders.funder_profiles_id.name&fields=topics.topics_id.name"
-    "&filter={%22status%22:%22published%22}&sort=-publish_date"
-    f"&limit={ARTICLE_COUNT}&page=1&meta=filter_count&search="
-)
-
-DT_SEARCH: str = "ukraine"
-
 
 def download_dt_data() -> json:
     """Get data from Donor Tracker"""
-    url = DT_BASE + DT_SEARCH
+    url = config.DT_BASE + config.DT_SEARCH
     r = requests.get(url)
     return r.json()
 
@@ -28,13 +16,13 @@ def download_dt_data() -> json:
 def update_dt_data() -> None:
     """Update Donor Tracker data"""
     data = download_dt_data()
-    with open(config.PATHS.data + "/dt_articles.json", "w") as f:
+    with open(config.PATHS.raw_data / "dt_articles.json", "w") as f:
         json.dump(data, f)
 
 
 def read_dt_data() -> json:
     """Read Donor Tracker data"""
-    with open(config.PATHS.data + "/dt_articles.json", "r") as f:
+    with open(config.PATHS.raw_data / "dt_articles.json", "r") as f:
         data = json.load(f)
     return data
 
@@ -107,3 +95,24 @@ def dt_data_to_df(dt_data: json) -> pd.DataFrame:
     df = pd.DataFrame(dt_data["data"]).pipe(clean_dt_data)
 
     return df
+
+
+def live_dt_table_pipeline() -> None:
+    """Run the pipeline to update the Donor Tracker table"""
+    # update the table data
+    update_dt_data()
+    print("Updated Donor Tracker data")
+
+    # read the table data
+    dt_data = read_dt_data()
+
+    # convert to a DataFrame
+    df = dt_data_to_df(dt_data)
+
+    # write to a csv
+    df.to_csv(config.PATHS.output / "dt_table.csv", index=False)
+    print("Wrote Donor Tracker table to csv")
+
+
+if __name__ == "__main__":
+    live_dt_table_pipeline()

@@ -1,15 +1,16 @@
 import pandas as pd
 from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
-from oda_data import ODAData, set_data_path
+from oda_data import ODAData, set_data_path, set_pydeflate_path
 from oda_data.tools.groupings import donor_groupings
 from pydeflate import deflate
 
-from scripts import config
+
 from scripts.config import PATHS
 
 # set the data path
-set_data_path(config.PATHS.data)
+set_data_path(PATHS.raw_data)
+set_pydeflate_path(PATHS.pydeflate)
 
 
 def __export_df_page(
@@ -59,14 +60,14 @@ def __export_df_page(
         ["Total ODA", "GNI", "ODA as a share of GNI", "IDRC as a share of GNI"],
     ] = pd.NA
 
-    _.to_csv(f"{config.PATHS.output}/idrc_oda_chart_{page}.csv", index=False)
+    _.to_csv(PATHS.output / f"idrc_oda_chart_{page}.csv", index=False)
 
 
 def read_oda():
     """Read ODA data from raw_data folder. This data contains flows up to 2017 and
     grant equivalents from 2018 onwards. It is in current prices"""
     return (
-        pd.read_csv(f"{config.PATHS.data}/total_oda_current.csv")
+        pd.read_csv(PATHS.raw_data / "total_oda_current.csv")
         .filter(["year", "donor_name", "value"], axis=1)
         .rename(columns={"value": "total_oda"})
         .assign(
@@ -98,12 +99,12 @@ def _create_idrc_data() -> None:
     df = _raw_oda_data(indicator="idrc_flow").rename(columns={"value": "idrc"})
 
     # Export the data
-    df.to_csv(f"{config.PATHS.data}/total_idrc_current.csv", index=False)
+    df.to_csv(PATHS.raw_data / "total_idrc_current.csv", index=False)
 
 
 def read_idrc():
     """Read IDRC data from raw_data folder. This data comes from Table 1 from OECD DAC"""
-    return pd.read_csv(f"{config.PATHS.data}/total_idrc_current.csv").assign(
+    return pd.read_csv(PATHS.raw_data / "total_idrc_current.csv").assign(
         donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
@@ -114,12 +115,12 @@ def _create_gni_data() -> None:
     df = _raw_oda_data(indicator="gni").rename(columns={"value": "gni"})
 
     # Export the data
-    df.to_csv(f"{config.PATHS.data}/gni.csv", index=False)
+    df.to_csv(PATHS.raw_data / "gni.csv", index=False)
 
 
 def read_gni():
     """Read GNI data from raw_data folder. This data comes from Table 1 from OECD DAC"""
-    return pd.read_csv(f"{config.PATHS.data}/gni.csv").assign(
+    return pd.read_csv(PATHS.raw_data / "gni.csv").assign(
         donor_name=lambda d: country_converter.convert(d.donor_name, to="short_name")
     )
 
@@ -143,7 +144,7 @@ def _pop_groups(list_: list, group_size: int) -> tuple[list, ...]:
 
 def read_refugee_cost_data() -> pd.DataFrame:
     """Read the saved refugee cost data"""
-    return pd.read_csv(f"{PATHS.output}/ukraine_refugee_cost_estimates.csv")
+    return pd.read_csv(PATHS.output / "ukraine_refugee_cost_estimates.csv")
 
 
 def idrc_oda_chart() -> None:
@@ -230,6 +231,8 @@ def idrc_oda_chart() -> None:
     for page_, list_ in enumerate(chart_pages):
         __export_df_page(page=page_, page_countries=list_, idrc=idrc, oda=oda, gni=gni)
 
+    print("Exported data for ODA/IDRC charts (pages)")
+
 
 def idrc_as_share():
     """Build the CSV used by the IDRC as a share of GNI chart"""
@@ -253,10 +256,13 @@ def idrc_as_share():
     dac["share"] = round(100 * dac.idrc / dac.total_oda, 5)
     dac["Donor"] = "DAC Countries, Total"
 
-    return pd.concat([dac, df], ignore_index=True)
+    data = pd.concat([dac, df], ignore_index=True)
+
+    data.to_csv(PATHS.output + "/idrc_share.csv", index=False)
+    print("Exported data for IDRC as a share")
 
 
-def idrc_constant_wide():
+def idrc_constant_wide() -> None:
     """Build the CSV used by the IDRC constant prices chart"""
 
     # Read the different datasets that are needed for the chart
@@ -329,24 +335,11 @@ def idrc_constant_wide():
         .loc[lambda d: d.year >= 2012]
     )
 
-    data.to_csv(config.PATHS.output + "/idrc_over_time_constant.csv", index=False)
+    data.to_csv(PATHS.output + "/idrc_over_time_constant.csv", index=False)
+    print("IDRC over time constant prices CSV created (wide)")
 
 
 if __name__ == "__main__":
-    ...
+    idrc_as_share()
     idrc_oda_chart()
-
     idrc_constant_wide()
-    # # download fresh idrc data
-    # _create_idrc_data()
-    #
-    # # download fresh gni data
-    # _create_gni_data()
-    #
-    # share = idrc_as_share()
-    # share.to_csv(config.PATHS.output + "/idrc_share.csv", index=False)
-    #
-    # idrc_const = idrc_constant_wide()
-    # idrc_const.to_csv(config.PATHS.output + "/idrc_constant.csv", index=False)
-    #
-    # idrc_oda_chart()

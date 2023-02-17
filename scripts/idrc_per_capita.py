@@ -6,14 +6,6 @@ from bblocks.import_tools.unzip import read_zipped_csv
 
 from scripts.config import PATHS
 from scripts.oda import read_idrc
-from scripts.unhcr_data import (
-    _authenticate,
-    _get_workbook,
-    WORKBOOK_KEY,
-    _get_worksheet,
-    WORKSHEET_KEY_NEW,
-    df2gsheet,
-)
 
 HIGH_LOW = "high"
 YEAR_START = 2018
@@ -86,12 +78,12 @@ def update_unhcr_data(low_or_high: str) -> None:
         .sum(numeric_only=True)
     )
 
-    df.to_feather(f"{PATHS.output}/unhcr_data_{low_or_high}.feather")
+    df.to_feather(PATHS.output / f"unhcr_data_{low_or_high}.feather")
 
 
 def read_historical_unhcr_data(low_or_high: str) -> pd.DataFrame:
     """Read the locally saved historical UNHCR data"""
-    return pd.read_feather(f"{PATHS.output}/unhcr_data_{low_or_high}.feather")
+    return pd.read_feather(PATHS.output / f"unhcr_data_{low_or_high}.feather")
 
 
 def filter_dac(df: pd.DataFrame) -> pd.DataFrame:
@@ -106,7 +98,7 @@ def filter_dac(df: pd.DataFrame) -> pd.DataFrame:
 def read_ukriane_hcr_data() -> pd.DataFrame:
     """Read the locally saved HCR data"""
 
-    return pd.read_csv(f"{PATHS.output}/hcr_data.csv").rename(
+    return pd.read_csv(PATHS.output / "hcr_data.csv").rename(
         columns={
             "Individual refugees from Ukraine recorded across Europe": "value",
             "Country": "country",
@@ -198,63 +190,8 @@ def update_refugee_cost_data() -> None:
         cost_data=idrc_per_capita, refugee_data=ukraine_data
     )
 
-    summary.to_csv(f"{PATHS.output}/ukraine_refugee_cost_estimates.csv", index=False)
-
-
-def upload_ukraine_refugee_data() -> None:
-    # Read the historical data
-    refugees = read_historical_unhcr_data(HIGH_LOW).pipe(filter_dac)
-
-    # load IDRC data
-    idrc = yearly_constant_idrc()
-
-    # Get the per capita numbers
-    idrc_per_capita = per_capita_idrc(refugees, idrc)
-
-    # Get the latest Ukraine refugees data
-    ukraine_data = read_ukriane_hcr_data().pipe(filter_dac)
-
-    # get latest dates
-    latest_date = (
-        ukraine_data.assign(date=lambda d: pd.to_datetime(d.date, format="%m-%Y"))
-        .groupby(["iso_code"])[["date"]]
-        .max()
-        .assign(date=lambda d: d.date.dt.strftime("%B %Y"))
-        .to_dict()["date"]
-    )
-
-    # Calculate the yearly spending on refugees
-    data = (
-        yearly_refugees_spending(cost_data=idrc_per_capita, refugee_data=ukraine_data)
-        .merge(idrc_per_capita, on=["iso_code"], how="left")
-        .assign(
-            donor_name=lambda d: coco.convert(d.iso_code, to="name_short"),
-            latest_date=lambda d: d.iso_code.map(latest_date),
-        )
-        .filter(
-            [
-                "iso_code",
-                "donor_name",
-                "total_refugees",
-                "cost22",
-                "cost23",
-                "cost24",
-                "tot_cost_dfl",
-                "latest_date",
-            ],
-            axis=1,
-        )
-    )
-
-    # Authenticate and load worksheet
-    auth = _authenticate()
-    wb = _get_workbook(auth, WORKBOOK_KEY)
-    sheet = _get_worksheet(wb, WORKSHEET_KEY_NEW)
-
-    # Upload data
-    df2gsheet(data, sheet)
+    summary.to_csv(PATHS.output / "ukraine_refugee_cost_estimates.csv", index=False)
 
 
 if __name__ == "__main__":
     update_refugee_cost_data()
-    upload_ukraine_refugee_data()
