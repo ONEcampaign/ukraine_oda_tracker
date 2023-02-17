@@ -3,9 +3,7 @@ from datetime import datetime
 
 from scripts.config import PATHS
 from scripts.dt_table import live_dt_table_pipeline
-from scripts.idrc_per_capita import (
-    update_refugee_cost_data,
-)
+from scripts.idrc_per_capita import update_refugee_cost_data
 from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart
 from scripts.unhcr_data import update_ukraine_hcr_data
 
@@ -13,7 +11,7 @@ from scripts.unhcr_data import update_ukraine_hcr_data
 def last_updated():
     """Appends the date of last run to a csv"""
 
-    with open(f"{PATHS.output}/updates.csv", "a+", newline="") as write_obj:
+    with open(PATHS.output / "updates.csv", "a+", newline="") as write_obj:
         # Create a writer object from csv module
         csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
@@ -27,7 +25,7 @@ def update_daily():
     update_ukraine_hcr_data()
 
     # Update IDRC estimates charts
-    share = idrc_as_share()
+    idrc_as_share()
 
     # Update IDRC constant chart
     idrc_constant_wide()

@@ -10,7 +10,6 @@ from scripts.config import PATHS
 
 # set the data path
 set_data_path(PATHS.raw_data)
-set_pydeflate_path(PATHS.pydeflate)
 
 
 def __export_df_page(
@@ -258,7 +257,7 @@ def idrc_as_share():
 
     data = pd.concat([dac, df], ignore_index=True)
 
-    data.to_csv(PATHS.output + "/idrc_share.csv", index=False)
+    data.to_csv(PATHS.output / "idrc_share.csv", index=False)
     print("Exported data for IDRC as a share")
 
 
@@ -335,7 +334,7 @@ def idrc_constant_wide() -> None:
         .loc[lambda d: d.year >= 2012]
     )
 
-    data.to_csv(PATHS.output + "/idrc_over_time_constant.csv", index=False)
+    data.to_csv(PATHS.output / "idrc_over_time_constant.csv", index=False)
     print("IDRC over time constant prices CSV created (wide)")
 
 
