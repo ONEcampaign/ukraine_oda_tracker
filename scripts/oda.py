@@ -1,7 +1,7 @@
 import pandas as pd
 from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
-from oda_data import ODAData, set_data_path, set_pydeflate_path
+from oda_data import ODAData, set_data_path
 from oda_data.tools.groupings import donor_groupings
 from pydeflate import deflate
 
@@ -60,6 +60,23 @@ def __export_df_page(
     ] = pd.NA
 
     _.to_csv(PATHS.output / f"idrc_oda_chart_{page}.csv", index=False)
+
+
+def update_oda() -> None:
+    """Update the ODA data from the raw_data folder"""
+    from oda_data import ODAData
+
+    oda = ODAData(
+        years=[2021, 2022],
+        donors=list(donor_groupings()["dac_countries"]),
+        include_names=True,
+    )
+
+    oda.load_indicator(["total_oda_ge"])
+
+    df = oda.get_data()
+
+    df.to_csv(PATHS.output / "latest_oda.csv", index=False)
 
 
 def read_oda():

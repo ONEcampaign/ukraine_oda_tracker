@@ -4,7 +4,7 @@ from datetime import datetime
 from scripts.config import PATHS
 from scripts.dt_table import live_dt_table_pipeline
 from scripts.idrc_per_capita import update_refugee_cost_data
-from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart
+from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart, update_oda
 from scripts.unhcr_data import update_ukraine_hcr_data
 
 
@@ -41,6 +41,9 @@ def update_weekly():
     """Charts to update every week"""
     # update historical refugee estimates
     update_refugee_cost_data()
+
+    # update monthly oda
+    update_oda()
 
     # Update last updated date
     last_updated()

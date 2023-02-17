@@ -1,0 +1,30 @@
+year,indicator,donor_code,donor_name,currency,prices,value
+2021,total_oda_ge,1,Austria,USD,current,1466.78
+2021,total_oda_ge,2,Belgium,USD,current,2615.51
+2021,total_oda_ge,3,Denmark,USD,current,2921.0
+2021,total_oda_ge,4,France,USD,current,15505.62
+2021,total_oda_ge,5,Germany,USD,current,33272.39
+2021,total_oda_ge,6,Italy,USD,current,6085.13
+2021,total_oda_ge,7,Netherlands,USD,current,5287.54
+2021,total_oda_ge,8,Norway,USD,current,4672.97
+2021,total_oda_ge,9,Portugal,USD,current,450.75
+2021,total_oda_ge,10,Sweden,USD,current,5934.17
+2021,total_oda_ge,11,Switzerland,USD,current,3912.02
+2021,total_oda_ge,12,United Kingdom,USD,current,15712.01
+2021,total_oda_ge,18,Finland,USD,current,1441.22
+2021,total_oda_ge,20,Iceland,USD,current,70.84
+2021,total_oda_ge,21,Ireland,USD,current,1154.89
+2021,total_oda_ge,22,Luxembourg,USD,current,539.37
+2021,total_oda_ge,40,Greece,USD,current,340.85
+2021,total_oda_ge,50,Spain,USD,current,3645.03
+2021,total_oda_ge,61,Slovenia,USD,current,116.19
+2021,total_oda_ge,68,Czech Republic,USD,current,366.11
+2021,total_oda_ge,69,Slovak Republic,USD,current,155.28
+2021,total_oda_ge,75,Hungary,USD,current,435.08
+2021,total_oda_ge,76,Poland,USD,current,983.51
+2021,total_oda_ge,301,Canada,USD,current,6302.74
+2021,total_oda_ge,302,United States,USD,current,47804.8
+2021,total_oda_ge,701,Japan,USD,current,17634.14
+2021,total_oda_ge,742,Korea,USD,current,2872.51
+2021,total_oda_ge,801,Australia,USD,current,3546.44
+2021,total_oda_ge,820,New Zealand,USD,current,685.26
