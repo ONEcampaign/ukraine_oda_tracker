@@ -1,26 +1,26 @@
-"""Handle paths to files and working directories"""
-import os
+from pathlib import Path
 
 
-class Paths:
-    def __init__(self, project_dir):
-        self.project_dir = project_dir
+class PATHS:
+    """Class to store the paths to the data and output folders."""
 
-    @property
-    def scripts(self):
-        return os.path.join(self.project_dir, "scripts")
-
-    @property
-    def output(self):
-        return os.path.join(self.project_dir, "output")
-
-    @property
-    def data(self):
-        return os.path.join(
-            self.project_dir,
-            "raw_data",
-        )
+    project = Path(__file__).resolve().parent.parent
+    scripts = project / "scripts"
+    raw_data = project / "raw_data"
+    output = project / "output"
+    pydeflate = raw_data / ".pydeflate"
 
 
-# Variable with paths as properties
-PATHS = Paths(os.path.dirname(os.path.dirname(__file__)))
+# -----------------------------------------------------------------------------
+
+ARTICLE_COUNT: int = 50
+
+DT_BASE: str = (
+    "https://cms.donortracker.org/items/policy_updates?fields=title&fields=slug&"
+    "fields=publish_date&fields=content&fields=sources&fields="
+    "funders.funder_profiles_id.name&fields=topics.topics_id.name"
+    "&filter={%22status%22:%22published%22}&sort=-publish_date"
+    f"&limit={ARTICLE_COUNT}&page=1&meta=filter_count&search="
+)
+
+DT_SEARCH: str = "ukraine"

@@ -1,9 +1,8 @@
 iso_code,country,date,value
-CAN,Canada,October-22,312318
-CAN,Canada,January-23,492391
-JPN,Japan,June-22,1300
-JPN,Japan,September-22,1800
-LUX,Luxembourg,April-22,5000
-NZL,New Zealand,March-22,4000
-USA,United States,July-22,71000
-USA,United States,November-22,85000
+CAN,Canada,October-2022,312318
+CAN,Canada,January-2023,492391
+JPN,Japan,June-2022,1300
+JPN,Japan,September-2022,1800
+NZL,New Zealand,March-2022,4000
+USA,United States,July-2022,71000
+USA,United States,November-2022,85000
