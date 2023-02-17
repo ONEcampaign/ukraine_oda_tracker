@@ -200,4 +200,5 @@ def update_ukraine_hcr_data() -> None:
 
 
 if __name__ == "__main__":
-    update_ukraine_hcr_data()
+    ...
+    # update_ukraine_hcr_data()
