@@ -118,7 +118,7 @@ def monthly_difference_by_country(df: pd.DataFrame) -> pd.DataFrame:
 
     column = "Individual refugees from Ukraine recorded across Europe"
 
-    df["diff"] = df.groupby(by="iso_code")[column].diff().fillna(df[column])
+    df["difference"] = df.groupby(by="iso_code")[column].diff().fillna(df[column])
 
     return df
 
@@ -131,6 +131,11 @@ def add_yearly_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
     df["ratio22"] = df.month.apply(lambda x: 1 - ((x - 1) / 12))
     df["ratio23"] = 1 - df.ratio22
+
+    # Correct the july 2022 ratio
+    mask = (df["Data Date"].dt.year == 2022) & (df["Data Date"].dt.month == 7)
+    df.loc[mask, "ratio22"] = 2 / 3
+    df.loc[mask, "ratio23"] = 1 / 3
 
     df.loc[df["Data Date"].dt.year > 2022, "ratio24"] = df["ratio23"]
     df.loc[df["Data Date"].dt.year > 2022, "ratio23"] = df["ratio22"]
@@ -146,11 +151,30 @@ def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
 
 def save_hcr_data(df: pd.DataFrame) -> None:
     """Save output as a CSV in output folder"""
-    df.to_csv(f"{config.PATHS.output}/hcr_data.csv")
+    df.to_csv(f"{config.PATHS.output}/hcr_data.csv", index=False)
 
 
-def hcr_data_pipeline() -> pd.DataFrame:
+def read_manual_ukraine_refugee_data() -> pd.DataFrame:
+    return (
+        pd.read_csv(f"{config.PATHS.data}/non-eu-refugees.csv", parse_dates=["date"])
+        .astype({"value": int})
+        .assign(date=lambda d: pd.to_datetime(d.date, format="%B-%y"))
+        .rename(
+            {
+                "date": "Data Date",
+                "value": "Individual refugees from Ukraine recorded across Europe",
+                "country": "Country",
+            },
+            axis=1,
+        )
+    )
+
+
+def update_ukraine_hcr_data() -> None:
     """Load and process HCR data"""
+
+    # manual data
+    manual_data = read_manual_ukraine_refugee_data()
 
     # Get the latest data from the UNHCR website and clean the data types
     new_data = get_unhcr_data().pipe(clean_hcr_data_download)
@@ -163,9 +187,10 @@ def hcr_data_pipeline() -> pd.DataFrame:
         pd.concat(data_files, ignore_index=True)
         .pipe(clean_hrc_data)
         .pipe(filter_hrc_data_by_month)
-        .pipe(monthly_difference_by_country)
-        .pipe(add_yearly_ratios)
     )
+    data = pd.concat([data, manual_data], ignore_index=True)
+
+    data = data.pipe(monthly_difference_by_country).pipe(add_yearly_ratios)
 
     # Change the date format
     data["Data Date"] = data["Data Date"].dt.strftime("%m-%Y")
@@ -173,37 +198,7 @@ def hcr_data_pipeline() -> pd.DataFrame:
     # Save data to output folder as csv
     save_hcr_data(df=data)
 
-    return data
-
-
-def upload_hcr_data() -> None:
-    # Get data from UNHCR
-    data = hcr_data_pipeline()
-
-    # Authenticate and load worksheet
-    auth = _authenticate()
-    wb = _get_workbook(auth, WORKBOOK_KEY)
-    sheet = _get_worksheet(wb, WORKSHEET_KEY_NEW)
-
-    # Upload data
-    df2gsheet(data, sheet)
-
-
-def load_hrc_data() -> None:
-    """Load data to google docs"""
-
-    # Get data from UNHCR
-    data = get_unhcr_data()
-
-    # Authenticate and load worksheet
-    auth = _authenticate()
-    wb = _get_workbook(auth, WORKBOOK_KEY)
-    sheet = _get_worksheet(wb, WORKSHEET_KEY)
-
-    # Upload data
-    df2gsheet(data, sheet)
-
 
 if __name__ == "__main__":
-    # load_hrc_data()
-    upload_hcr_data()
+    ...
+    # update_ukraine_hcr_data()
