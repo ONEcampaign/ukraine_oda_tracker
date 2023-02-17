@@ -79,6 +79,22 @@ def update_oda() -> None:
     df.to_csv(PATHS.output / "latest_oda.csv", index=False)
 
 
+def update_total_oda_data() -> None:
+    from oda_data import ODAData
+
+    oda = ODAData(
+        years=range(2010, 2023),
+        donors=list(donor_groupings()["dac_countries"]),
+        include_names=True,
+    )
+
+    oda.load_indicator(["total_oda_official_definition"])
+
+    df = oda.get_data().filter(["year", "donor_name", "value"], axis=1)
+
+    df.to_csv(PATHS.raw_data / "total_oda_current.csv", index=False)
+
+
 def read_oda():
     """Read ODA data from raw_data folder. This data contains flows up to 2017 and
     grant equivalents from 2018 onwards. It is in current prices"""

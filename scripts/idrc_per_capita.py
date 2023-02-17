@@ -114,6 +114,9 @@ def yearly_refugees_spending(
 
     data = refugee_data.merge(cost_data, on=["iso_code"], how="left")
 
+    # Ensure all differences are positive or zero
+    data = data.assign(difference=lambda d: d.difference.apply(lambda x: max(x, 0)))
+
     data = data.assign(
         cost22=lambda d: d["difference"] * d.ratio22 * d.tot_cost_dfl,
         cost23=lambda d: d["difference"] * d.ratio23 * d.tot_cost_dfl,
