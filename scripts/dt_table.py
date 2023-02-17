@@ -109,6 +109,8 @@ def live_dt_table_pipeline() -> None:
     # convert to a DataFrame
     df = dt_data_to_df(dt_data)
 
+    df.columns = ["title", "content"]
+
     # write to a csv
     df.to_csv(config.PATHS.output / "dt_table.csv", index=False)
     print("Wrote Donor Tracker table to csv")
