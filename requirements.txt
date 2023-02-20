@@ -7,3 +7,4 @@ packaging
 selenium
 numpy
 oda-data
+webdriver-manager
