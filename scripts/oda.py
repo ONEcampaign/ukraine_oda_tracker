@@ -3,13 +3,14 @@ from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
 from oda_data import ODAData, set_data_path
 from oda_data.tools.groupings import donor_groupings
-from pydeflate import deflate
+from pydeflate import deflate, set_pydeflate_path
 
 
 from scripts.config import PATHS
 
 # set the data path
 set_data_path(PATHS.raw_data)
+set_pydeflate_path(PATHS.raw_data)
 
 
 def __export_df_page(
@@ -315,12 +316,15 @@ def idrc_constant_wide() -> None:
     idrc_hist = deflate(
         df=idrc_hist.copy(deep=True),
         base_year=2021,
-        source="oecd_dac",
+        deflator_source="oecd_dac",
+        deflator_method="dac_deflator",
+        exchange_source="oecd_dac",
+        exchange_method="implied",
         id_column="iso_code",
         id_type="ISO3",
         date_column="year",
-        source_col="idrc",
-        target_col="idrc",
+        source_column="idrc",
+        target_column="idrc",
     )
 
     idrc_latest = idrc_hist.query("year == year.max()").drop("year", axis=1)

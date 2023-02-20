@@ -1,11 +1,13 @@
 import country_converter as coco
 import pandas as pd
-import pydeflate
+from pydeflate import set_pydeflate_path, deflate
 from bblocks.dataframe_tools.add import add_iso_codes_column
 from bblocks.import_tools.unzip import read_zipped_csv
 
 from scripts.config import PATHS
 from scripts.oda import read_idrc
+
+set_pydeflate_path(PATHS.raw_data)
 
 HIGH_LOW = "high"
 YEAR_START = 2018
@@ -141,13 +143,16 @@ def yearly_constant_idrc() -> pd.DataFrame:
     ).drop(columns=["donor_name"])
 
     return idrc.pipe(
-        pydeflate.deflate,
+        deflate,
         base_year=2021,
-        source="oecd_dac",
+        deflator_source="oecd_dac",
+        deflator_method="dac_deflator",
+        exchange_source="oecd_dac",
+        exchange_method="implied",
         id_column="iso_code",
         id_type="ISO3",
         date_column="year",
-        target_col="value",
+        target_column="value",
     )
 
 
