@@ -1,7 +1,7 @@
 import country_converter as coco
 import pandas as pd
 from pydeflate import set_pydeflate_path, deflate
-from bblocks.dataframe_tools.add import add_iso_codes_column
+from bblocks.dataframe_tools.add import add_iso_codes_column, add_short_names_column
 from bblocks.import_tools.unzip import read_zipped_csv
 
 from scripts.config import PATHS
@@ -201,5 +201,65 @@ def update_refugee_cost_data() -> None:
     summary.to_csv(PATHS.output / "ukraine_refugee_cost_estimates.csv", index=False)
 
 
+def export_summary_cost_data() -> None:
+    """Calculate the cost estimates per year. This assumes that
+    the historical data and ukraine-specific data have been downloaded
+    and updated"""
+
+    # Read the historical data
+    refugees = read_historical_unhcr_data(HIGH_LOW).pipe(filter_dac)
+
+    # load IDRC data
+    idrc = yearly_constant_idrc()
+
+    # Get the per capita numbers
+    idrc_per_capita = per_capita_idrc(refugees, idrc)
+
+    # Get the latest Ukraine refugees data
+    ukraine_data = read_ukriane_hcr_data().pipe(filter_dac)
+
+    # Calculate the yearly spending on refugees
+    summary = yearly_refugees_spending(
+        cost_data=idrc_per_capita, refugee_data=ukraine_data
+    )
+
+    # Export the summary data
+    sheet1 = (
+        summary.pipe(
+            add_short_names_column,
+            id_column="iso_code",
+            id_type="ISO3",
+            target_column="donor",
+        )
+        .rename(columns={"total_refugees": "refugees_to_date"})
+        .filter(["donor", "refugees_to_date", "cost22", "cost23", "cost24"], axis=1)
+    )
+
+    sheet2 = (
+        idrc_per_capita.pipe(
+            add_short_names_column,
+            id_column="iso_code",
+            id_type="ISO3",
+            target_column="donor",
+        )
+        .rename(columns={"tot_cost_dfl": "cost_per_refugee"})
+        .filter(["donor", "cost_per_refugee"], axis=1)
+    )
+
+    sheet3 = ukraine_data.rename(
+        columns={
+            "difference": "monthly_difference",
+            "value": "refugees_to_date",
+            "country": "donor",
+        }
+    ).drop(columns=["iso_code"])
+
+    with pd.ExcelWriter(PATHS.output / "ukraine_refugee_cost_estimates.xlsx") as writer:
+        sheet1.to_excel(writer, sheet_name="Summary", index=False)
+        sheet2.to_excel(writer, sheet_name="Cost per refugee", index=False)
+        sheet3.to_excel(writer, sheet_name="Monthly data", index=False)
+
+
 if __name__ == "__main__":
     update_refugee_cost_data()
+    export_summary_cost_data()

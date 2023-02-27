@@ -3,7 +3,7 @@ from datetime import datetime
 
 from scripts.config import PATHS
 from scripts.dt_table import live_dt_table_pipeline
-from scripts.idrc_per_capita import update_refugee_cost_data
+from scripts.idrc_per_capita import export_summary_cost_data, update_refugee_cost_data
 from scripts.oda import idrc_as_share, idrc_constant_wide, idrc_oda_chart, update_oda
 from scripts.unhcr_data import update_ukraine_hcr_data
 
@@ -35,6 +35,9 @@ def update_daily():
 
     # Update donor tracker table
     live_dt_table_pipeline()
+
+    # Export summary cost data
+    export_summary_cost_data()
 
 
 def update_weekly():
