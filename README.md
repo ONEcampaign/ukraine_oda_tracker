@@ -5,7 +5,7 @@ Russia’s invasion of Ukraine has sparked the biggest war in Europe since WWII.
 It has cost thousands of lives, caused millions of people to flee Ukraine, 
 and has set off a global food crisis.
 
-Our analysis shows that in-donor refugee costs alone amount to billions of dollars in 2022.
+Our estimates show that in-donor refugee costs alone amounted to $35bn in 2022 and over this amount again in 2023.
 Other humanitarian and financial support committed to Ukraine will further drive up totals.
 The world will not be able to  meet the extraordinary needs from these compounding crises without
 increasing aid budgets significantly.
@@ -19,12 +19,15 @@ The 2018-2021 timeframe is chosen to reflect recent reporting practises, after t
 guidelines by the DAC Temporary Working Group on Refugees and Migration. 
 
 
-To estimate 2022 in-donor refugee costs for Ukrainian refugees, we multiply our estimated average in-donor refugee cost 
-for each specific donor by the number of Ukrainian refugees reported to be in that country. 
+To estimate 2022, 2023 and 2024 in-donor refugee costs for Ukrainian refugees, we multiply our estimated average in-donor refugee cost 
+for each specific donor by the number of Ukrainian refugees reported to be in that country. We track net arrivals each month to account 
+for the varying arrival dates of refugees, such that the 12-months of ODA-eligible costs is spread more accurately across 2022, 2023 and 2024. 
 For European countries, data on `individual refugees from Ukraine recorded` comes from
 [UNHCR’s Operational Data Portal for Ukrainian Refugees](https://data.unhcr.org/en/situations/ukraine). 
 For countries without data via UNHCR, we use the reported number of refugees within a country from official government 
-websites or statements.
+websites or statements. 
+
+For a more detailed methodology, please see [here](https://docs.google.com/document/d/1fLC3RFjmxIlgh7CRCKlGetufJ0oy7Q9u2RqlDupOd5M/edit?usp=sharing). 
 
 ### Data sources
 
@@ -53,8 +56,8 @@ due to missing in-donor refugee costs data.
 This repository contains data and scripts to reproduce the analysis and create the csv file powering the 
 flourish visualization for the tracker. 
 
-Some data needs to be collected manually. We use a Google Sheets spreadsheet for this purpose,
-[available here](https://docs.google.com/spreadsheets/d/1VIaZMH4_myGAwIfeXzfjhiQ6WjFXgt559sThuM3_AaM/edit#gid=1426201490).
+Our final estimates by donor name, average in-donor refugee costs, number of refugees, and 2022, 2023 and 2024 costs are
+available [here](LINK TO BE ADDED). 
 
 Python (>=3.10) is required and additional packages required are listed under `requirements.txt`.
 
