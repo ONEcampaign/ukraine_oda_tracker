@@ -223,6 +223,13 @@ def export_summary_cost_data() -> None:
         cost_data=idrc_per_capita, refugee_data=ukraine_data
     )
 
+    # Get the latest official IDRC number
+    idrc_latest = (
+        idrc.query("year == year.max()")
+        .drop("year", axis=1)
+        .rename(columns={"value": "latest_reported_idrc"})
+    )
+
     # Export the summary data
     sheet1 = (
         summary.pipe(
@@ -231,8 +238,26 @@ def export_summary_cost_data() -> None:
             id_type="ISO3",
             target_column="donor",
         )
-        .rename(columns={"total_refugees": "refugees_to_date"})
-        .filter(["donor", "refugees_to_date", "cost22", "cost23", "cost24"], axis=1)
+        .merge(idrc_latest, on="iso_code", how="left")
+        .rename(
+            columns={
+                "total_refugees": "refugees_to_date",
+                "cost22": "additional_cost_2022",
+                "cost23": "additional_cost_2023",
+                "cost24": "additional_cost_2024",
+            }
+        )
+        .filter(
+            [
+                "donor",
+                "refugees_to_date",
+                "latest_reported_idrc",
+                "additional_cost_2022",
+                "additional_cost_2023",
+                "additional_cost_2024",
+            ],
+            axis=1,
+        )
     )
 
     sheet2 = (
