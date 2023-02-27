@@ -226,6 +226,7 @@ def export_summary_cost_data() -> None:
     # Get the latest official IDRC number
     idrc_latest = (
         idrc.query("year == year.max()")
+        .assign(value=lambda d: d.value * 1e6)
         .drop("year", axis=1)
         .rename(columns={"value": "latest_reported_idrc"})
     )
