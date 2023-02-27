@@ -56,8 +56,9 @@ due to missing in-donor refugee costs data.
 This repository contains data and scripts to reproduce the analysis and create the csv file powering the 
 flourish visualization for the tracker. 
 
-Our final estimates by donor name, average in-donor refugee costs, number of refugees, and 2022, 2023 and 2024 costs are
-available [here](LINK TO BE ADDED). 
+Our most recent data is available [here](https://github.com/ONEcampaign/ukraine_oda_tracker/raw/main/output/ukraine_refugee_cost_estimates.xlsx).
+This excel contains the number of refugees recorded so far in each donor country,
+our estimated average in-donor refugee costs, the net monthly arrivals of refugees, and figures for 2022, 2023 and 2024 costs.
 
 Python (>=3.10) is required and additional packages required are listed under `requirements.txt`.
 
