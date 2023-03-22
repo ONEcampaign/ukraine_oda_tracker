@@ -27,11 +27,11 @@ def update_daily():
     # Update IDRC estimates charts
     idrc_as_share()
 
-    # Update IDRC constant chart
-    idrc_constant_wide()
-
     # Update IDRC ODA chart
     idrc_oda_chart()
+
+    # Update IDRC constant chart
+    idrc_constant_wide()
 
     # Update donor tracker table
     live_dt_table_pipeline()
