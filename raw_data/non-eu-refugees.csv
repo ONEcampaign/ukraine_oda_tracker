@@ -1,8 +1,18 @@
-iso_code,country,date,value
-CAN,Canada,October-2022,312318
-CAN,Canada,January-2023,492391
+﻿iso_code,country,date,value
 JPN,Japan,June-2022,1300
 JPN,Japan,September-2022,1800
 NZL,New Zealand,March-2022,4000
 USA,United States,July-2022,71000
 USA,United States,November-2022,85000
+CAN,Canada,April-2022,22253
+CAN,Canada,May-2022,35455
+CAN,Canada,June-2022,55488
+CAN,Canada,July-2022,58869
+CAN,Canada,August-2022,77154
+CAN,Canada,September-2022,82708
+CAN,Canada,October-2022,108836
+CAN,Canada,November-2022,120842
+CAN,Canada,December-2022,137797
+CAN,Canada,January-2023,149476
+CAN,Canada,February-2023,172220
+CAN,Canada,March-2023,177958
