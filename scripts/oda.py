@@ -380,6 +380,7 @@ def idrc_constant_wide() -> None:
 
 
 if __name__ == "__main__":
+    update_oda()
     _create_idrc_data()
     _create_gni_data()
     idrc_as_share()
