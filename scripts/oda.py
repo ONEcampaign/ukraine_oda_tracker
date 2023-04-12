@@ -68,7 +68,7 @@ def update_oda() -> None:
     from oda_data import ODAData
 
     oda = ODAData(
-        years=[2021, 2022],
+        years=[2022],
         donors=list(donor_groupings()["dac_countries"]) + [84],
         include_names=True,
     )
