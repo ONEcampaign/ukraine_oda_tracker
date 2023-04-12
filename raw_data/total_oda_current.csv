@@ -22,6 +22,7 @@ year,donor_name,value
 2010,Slovak Republic,73.71
 2010,Hungary,114.34
 2010,Poland,377.75
+2010,Lithuania,36.74
 2010,Canada,5214.12
 2010,United States,29656.36
 2010,Japan,11057.74
@@ -51,6 +52,7 @@ year,donor_name,value
 2011,Slovak Republic,86.02
 2011,Hungary,139.73
 2011,Poland,417.47
+2011,Lithuania,51.68
 2011,Canada,5458.56
 2011,United States,30966.21
 2011,Japan,11086.18
@@ -80,6 +82,7 @@ year,donor_name,value
 2012,Slovak Republic,79.68
 2012,Hungary,118.38
 2012,Poland,421.06
+2012,Lithuania,51.91
 2012,Canada,5650.26
 2012,United States,30652.38
 2012,Japan,10604.51
@@ -109,6 +112,7 @@ year,donor_name,value
 2013,Slovak Republic,86.04
 2013,Hungary,128.18
 2013,Poland,487.12
+2013,Lithuania,50.41
 2013,Canada,4947.24
 2013,United States,31266.66
 2013,Japan,11469.09
@@ -138,6 +142,7 @@ year,donor_name,value
 2014,Slovak Republic,83.21
 2014,Hungary,144.03
 2014,Poland,451.84
+2014,Lithuania,45.57
 2014,Canada,4240.04
 2014,United States,33095.5
 2014,Japan,9483.29
@@ -167,6 +172,7 @@ year,donor_name,value
 2015,Slovak Republic,84.91
 2015,Hungary,155.55
 2015,Poland,440.89
+2015,Lithuania,48.11
 2015,Canada,4277.23
 2015,United States,30985.54
 2015,Japan,9202.64
@@ -196,6 +202,7 @@ year,donor_name,value
 2016,Slovak Republic,106.01
 2016,Hungary,199.12
 2016,Poland,662.95
+2016,Lithuania,57.15
 2016,Canada,3930.44
 2016,United States,34420.98
 2016,Japan,10416.8
@@ -225,6 +232,7 @@ year,donor_name,value
 2017,Slovak Republic,119.2
 2017,Hungary,148.68
 2017,Poland,679.46
+2017,Lithuania,59.23
 2017,Canada,4304.89
 2017,United States,34731.98
 2017,Japan,11462.29
@@ -254,6 +262,7 @@ year,donor_name,value
 2018,Slovak Republic,137.74
 2018,Hungary,284.94
 2018,Poland,766.04
+2018,Lithuania,64.92
 2018,Canada,4678.86
 2018,United States,34152.25
 2018,Japan,14163.52
@@ -283,6 +292,7 @@ year,donor_name,value
 2019,Slovak Republic,115.77
 2019,Hungary,312.06
 2019,Poland,776.56
+2019,Lithuania,67.67
 2019,Canada,4725.24
 2019,United States,33492.34
 2019,Japan,15587.68
@@ -312,6 +322,7 @@ year,donor_name,value
 2020,Slovak Republic,141.2
 2020,Hungary,417.88
 2020,Poland,829.25
+2020,Lithuania,72.02
 2020,Canada,5051.67
 2020,United States,35576.31
 2020,Japan,16260.25
@@ -326,7 +337,7 @@ year,donor_name,value
 2021,Italy,6085.13
 2021,Netherlands,5287.54
 2021,Norway,4672.97
-2021,Portugal,450.75
+2021,Portugal,458.94
 2021,Sweden,5934.17
 2021,Switzerland,3912.02
 2021,United Kingdom,15712.01
@@ -335,15 +346,46 @@ year,donor_name,value
 2021,Ireland,1154.89
 2021,Luxembourg,539.37
 2021,Greece,340.85
-2021,Spain,3645.03
+2021,Spain,3641.9
 2021,Slovenia,116.19
 2021,Czech Republic,366.11
 2021,Slovak Republic,155.28
-2021,Hungary,435.08
+2021,Hungary,435.06
 2021,Poland,983.51
+2021,Lithuania,86.39
 2021,Canada,6302.74
 2021,United States,47804.8
 2021,Japan,17634.14
 2021,Korea,2872.51
 2021,Australia,3546.44
 2021,New Zealand,685.26
+2022,Austria,1853.23
+2022,Belgium,2657.25
+2022,Denmark,2856.93
+2022,France,15876.1
+2022,Germany,35024.76
+2022,Italy,6467.83
+2022,Netherlands,6470.7
+2022,Norway,5160.98
+2022,Portugal,504.7
+2022,Sweden,5455.61
+2022,Switzerland,4476.89
+2022,United Kingdom,15747.6
+2022,Finland,1613.54
+2022,Iceland,93.05
+2022,Ireland,2451.95
+2022,Luxembourg,530.98
+2022,Greece,305.4
+2022,Spain,4207.38
+2022,Slovenia,163.83
+2022,Czech Republic,987.12
+2022,Slovak Republic,171.01
+2022,Hungary,395.63
+2022,Poland,3378.18
+2022,Lithuania,196.99
+2022,Canada,7832.46
+2022,United States,55277.04
+2022,Japan,17475.33
+2022,Korea,2785.63
+2022,Australia,3039.62
+2022,New Zealand,537.61

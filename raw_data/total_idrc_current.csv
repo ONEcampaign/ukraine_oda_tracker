@@ -142,6 +142,7 @@ year,donor_name,idrc
 2015,Slovak Republic,1.74
 2015,Hungary,9.68
 2015,Poland,9.29
+2015,Lithuania,0.8
 2015,Canada,212.99
 2015,United States,1202.12
 2015,Japan,0.22
@@ -168,6 +169,7 @@ year,donor_name,idrc
 2016,Slovak Republic,1.6
 2016,Hungary,9.82
 2016,Poland,5.78
+2016,Lithuania,1.48
 2016,Canada,390.43
 2016,United States,1701.81
 2016,Japan,0.24
@@ -194,6 +196,7 @@ year,donor_name,idrc
 2017,Slovak Republic,1.33
 2017,Hungary,3.34
 2017,Poland,5.94
+2017,Lithuania,1.21
 2017,Canada,466.94
 2017,United States,1456.25
 2017,Japan,0.29
@@ -220,6 +223,7 @@ year,donor_name,idrc
 2018,Slovak Republic,0.79
 2018,Hungary,3.65
 2018,Poland,6.25
+2018,Lithuania,1.22
 2018,Canada,505.93
 2018,United States,1621.2
 2018,Japan,0.32
@@ -248,6 +252,7 @@ year,donor_name,idrc
 2019,Slovak Republic,0.87
 2019,Hungary,1.07
 2019,Poland,5.83
+2019,Lithuania,1.25
 2019,Canada,475.89
 2019,United States,1879.88
 2019,Japan,0.33
@@ -276,6 +281,7 @@ year,donor_name,idrc
 2020,Slovak Republic,0.97
 2020,Hungary,2.6
 2020,Poland,6.73
+2020,Lithuania,1.2
 2020,Canada,630.78
 2020,United States,1506.49
 2020,Japan,0.32
@@ -289,7 +295,7 @@ year,donor_name,idrc
 2021,Italy,556.1
 2021,Netherlands,407.65
 2021,Norway,52.25
-2021,Portugal,10.08
+2021,Portugal,11.05
 2021,Sweden,87.91
 2021,Switzerland,368.35
 2021,United Kingdom,1447.37
@@ -303,8 +309,37 @@ year,donor_name,idrc
 2021,Slovak Republic,1.21
 2021,Hungary,1.38
 2021,Poland,16.88
+2021,Lithuania,1.91
 2021,Canada,463.6
 2021,United States,4745.18
 2021,Japan,0.27
 2021,Korea,0.53
 2021,New Zealand,11.67
+2022,Austria,371.68
+2022,Belgium,248.82
+2022,Denmark,453.44
+2022,France,1487.37
+2022,Germany,4494.98
+2022,Italy,1479.83
+2022,Netherlands,945.58
+2022,Norway,485.1
+2022,Portugal,13.6
+2022,Sweden,384.36
+2022,Switzerland,1263.92
+2022,United Kingdom,4543.59
+2022,Finland,409.9
+2022,Iceland,7.86
+2022,Ireland,1251.7
+2022,Greece,39.62
+2022,Spain,850.46
+2022,Slovenia,21.3
+2022,Czech Republic,646.05
+2022,Slovak Republic,1.32
+2022,Hungary,1.15
+2022,Poland,2181.11
+2022,Lithuania,49.64
+2022,Canada,944.38
+2022,United States,6646.37
+2022,Japan,50.94
+2022,Korea,10.8
+2022,New Zealand,12.36
