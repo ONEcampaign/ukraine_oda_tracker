@@ -230,7 +230,7 @@ def idrc_oda_chart() -> None:
 
     # Assign the 2021 GNI value to 2022, 2023 and 2024
     dfs = [
-        gni.copy(deep=True).loc[lambda d: d.year == 2021].assign(year=y)
+        gni.copy(deep=True).loc[lambda d: d.year == 2022].assign(year=y)
         for y in [2023, 2024]
     ]
     gni = pd.concat([gni, *dfs], ignore_index=True)
