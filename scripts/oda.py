@@ -327,7 +327,7 @@ def idrc_constant_wide() -> None:
         target_column="idrc",
     )
 
-    idrc_latest = idrc_hist.query("year == year.max()").drop("year", axis=1)
+    idrc_latest = idrc_hist.query("year == 2021").drop("year", axis=1)
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
