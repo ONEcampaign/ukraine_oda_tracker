@@ -11,7 +11,7 @@ set_pydeflate_path(PATHS.raw_data)
 
 HIGH_LOW = "high"
 YEAR_START = 2018
-YEAR_END = 2021
+YEAR_END = 2022
 
 
 def update_unhcr_data(low_or_high: str) -> None:
@@ -92,7 +92,9 @@ def filter_dac(df: pd.DataFrame) -> pd.DataFrame:
     """Filter the data to only DAC countries (by ISO3 code)"""
     from oda_data.tools.groupings import donor_groupings
 
-    dac = coco.convert(donor_groupings()["dac_countries"].values(), to="ISO3")
+    dac = coco.convert(
+        list(donor_groupings()["dac_countries"].values()) + ["Lithuania"], to="ISO3"
+    )
 
     return df[df.iso_code.isin(dac)]
 
@@ -287,5 +289,6 @@ def export_summary_cost_data() -> None:
 
 
 if __name__ == "__main__":
+    update_unhcr_data("high")
     update_refugee_cost_data()
     export_summary_cost_data()

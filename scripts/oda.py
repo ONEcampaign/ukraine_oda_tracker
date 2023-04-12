@@ -1,7 +1,7 @@
 import pandas as pd
 from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
-from oda_data import ODAData, set_data_path
+from oda_data import ODAData, set_data_path, download_dac1
 from oda_data.tools.groupings import donor_groupings
 from pydeflate import deflate, set_pydeflate_path
 
@@ -69,7 +69,7 @@ def update_oda() -> None:
 
     oda = ODAData(
         years=[2021, 2022],
-        donors=list(donor_groupings()["dac_countries"]),
+        donors=list(donor_groupings()["dac_countries"]) + [84],
         include_names=True,
     )
 
@@ -85,7 +85,7 @@ def update_total_oda_data() -> None:
 
     oda = ODAData(
         years=range(2010, 2023),
-        donors=list(donor_groupings()["dac_countries"]),
+        donors=list(donor_groupings()["dac_countries"]) + [84],
         include_names=True,
     )
 
@@ -113,7 +113,7 @@ def read_oda():
 
 def _raw_oda_data(indicator: str) -> pd.DataFrame:
     """Read the data for a specific indicator"""
-    dac_donors = donor_groupings()["dac_countries"]
+    dac_donors = donor_groupings()["dac_countries"] | {84: "Lithuania"}
 
     # Instantiate the ODAData class
     oda = ODAData(years=range(2010, 2024), donors=list(dac_donors), include_names=True)
@@ -208,7 +208,7 @@ def idrc_oda_chart() -> None:
             )
         )
         .drop("idrc_latest", axis=1)
-    )
+    ).loc[lambda d: d.year > 2022]
 
     # Combine the historical and estimated data
     idrc = pd.concat([idrc_hist, idrc_est], ignore_index=True).assign(
@@ -231,7 +231,7 @@ def idrc_oda_chart() -> None:
     # Assign the 2021 GNI value to 2022, 2023 and 2024
     dfs = [
         gni.copy(deep=True).loc[lambda d: d.year == 2021].assign(year=y)
-        for y in [2022, 2023, 2024]
+        for y in [2023, 2024]
     ]
     gni = pd.concat([gni, *dfs], ignore_index=True)
 
@@ -315,7 +315,7 @@ def idrc_constant_wide() -> None:
     # Deflate to 2021 prices
     idrc_hist = deflate(
         df=idrc_hist.copy(deep=True),
-        base_year=2021,
+        base_year=2022,
         deflator_source="oecd_dac",
         deflator_method="dac_deflator",
         exchange_source="oecd_dac",
@@ -338,7 +338,7 @@ def idrc_constant_wide() -> None:
             )
         )
         .drop("idrc_latest", axis=1)
-    )
+    ).loc[lambda d: d.year > 2022]
 
     # Combine the historical and estimated data
     idrc = pd.concat([idrc_hist, idrc_est], ignore_index=True).assign(
@@ -364,6 +364,10 @@ def idrc_constant_wide() -> None:
 
     order = idrc_constant.donor_name.unique()
 
+    idrc_constant = idrc_constant.sort_values(
+        ["donor_name", "year"], ascending=[True, True]
+    )
+
     data = (
         idrc_constant.pivot(index="year", columns="donor_name", values="idrc")
         .filter(order, axis=1)
@@ -376,6 +380,9 @@ def idrc_constant_wide() -> None:
 
 
 if __name__ == "__main__":
+    _create_idrc_data()
+    _create_gni_data()
     idrc_as_share()
     idrc_oda_chart()
     idrc_constant_wide()
+    update_total_oda_data()
