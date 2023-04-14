@@ -316,7 +316,7 @@ def idrc_constant_wide() -> None:
         .filter(["iso_code", "year", "idrc"], axis=1)
     )
 
-    # Deflate to 2021 prices
+    # Deflate to 2022 prices
     idrc_hist = deflate(
         df=idrc_hist.copy(deep=True),
         base_year=2022,
