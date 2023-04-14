@@ -65,7 +65,9 @@ def __export_df_page(
 
 def update_oda() -> None:
     """Update the ODA data from the raw_data folder"""
-    from oda_data import ODAData
+    from oda_data import ODAData, set_data_path, download_dac1
+    set_data_path(PATHS.raw_data)
+
 
     oda = ODAData(
         years=[2022],
