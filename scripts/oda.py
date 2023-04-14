@@ -201,7 +201,7 @@ def idrc_oda_chart() -> None:
         .filter(["iso_code", "year", "idrc"], axis=1)
     )
 
-    idrc_latest = idrc_hist.query("year == year.max()").drop("year", axis=1)
+    idrc_latest = idrc_hist.query("year == 2021").drop("year", axis=1)
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
