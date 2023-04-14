@@ -5,7 +5,7 @@ Russia’s invasion of Ukraine has sparked the biggest war in Europe since WWII.
 It has cost thousands of lives, caused millions of people to flee Ukraine, 
 and has set off a global food crisis.
 
-Our estimates show that in-donor refugee costs alone amounted to $35bn in 2022 and over this amount again in 2023.
+The OECD reports that in-donor refugee costs alone amounted to $29bn in 2022. Our estimates predict a further $32bn in 2023.
 Other humanitarian and financial support committed to Ukraine will further drive up totals.
 The world will not be able to  meet the extraordinary needs from these compounding crises without
 increasing aid budgets significantly.
@@ -14,14 +14,15 @@ increasing aid budgets significantly.
 
 ### In-donor refugee costs
 We estimate average in-donor refugee costs per refugee per year by dividing the total ODA eligible in-donor refugee 
-costs reported by a donor country by the reported number of asylum applications over the last four years (2018-2021).
+costs reported by a donor country by the reported number of asylum applications over the last four years for which both refugee and 
+in-donor refugee cost data is available (2018-2021).
 The 2018-2021 timeframe is chosen to reflect recent reporting practises, after the clarifications on reporting
 guidelines by the DAC Temporary Working Group on Refugees and Migration. 
 
 
-To estimate 2022, 2023 and 2024 in-donor refugee costs for Ukrainian refugees, we multiply our estimated average in-donor refugee cost 
+To estimate 2023 in-donor refugee costs for Ukrainian refugees, we multiply our estimated average in-donor refugee cost 
 for each specific donor by the number of Ukrainian refugees reported to be in that country. We track net arrivals each month to account 
-for the varying arrival dates of refugees, such that the 12-months of ODA-eligible costs is spread more accurately across 2022, 2023 and 2024. 
+for the varying arrival dates of refugees, such that the 12-months of ODA-eligible costs is more reflective of the costs for 2023. 
 For European countries, data on `individual refugees from Ukraine recorded` comes from
 [UNHCR’s Operational Data Portal for Ukrainian Refugees](https://data.unhcr.org/en/situations/ukraine). 
 For countries without data via UNHCR, we use the reported number of refugees within a country from official government 
@@ -34,7 +35,7 @@ For a more detailed methodology, please see [here](https://docs.google.com/docum
 #### In-donor refugee costs
 Sourced from the [OECD DAC1 table](https://stats.oecd.org/Index.aspx?DataSetCode=Table1).
 
-We deflate these figures into constant 2021 prices for comparability across the four years.
+We deflate these figures into constant 2022 prices for comparability across the four years.
 
 #### Refugees
 Sourced from the [UNHCR Refugee Statistics Data Portal](https://www.unhcr.org/data.html). We include applications to 
@@ -56,15 +57,12 @@ due to missing in-donor refugee costs data.
 This repository contains data and scripts to reproduce the analysis and create the csv file powering the 
 flourish visualization for the tracker. 
 
-Our most recent data is available [here](https://github.com/ONEcampaign/ukraine_oda_tracker/raw/main/output/ukraine_refugee_cost_estimates.xlsx).
-This excel contains the number of refugees recorded so far in each donor country,
-our estimated average in-donor refugee costs, the net monthly arrivals of refugees, and figures for 2022, 2023 and 2024 costs.
-
 Python (>=3.10) is required and additional packages required are listed under `requirements.txt`.
+
 
 ### Scripts
 The `scripts` directory contains the following:
-- `conifg.py`: manages working directory and file paths.
+- `config.py`: manages working directory and file paths.
 - `create_table.py`: creates a csv file for the tracking table (a Flourish visualization).
 - `idrc_per_capita.py`: to reproduce the in-donor refugee costs per capita figure for each donor.
 - `oda_data.py`: to read, clean and transform the data required to produce the different visualisations.
