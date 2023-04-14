@@ -60,14 +60,16 @@ def __export_df_page(
         ["Total ODA", "GNI", "ODA as a share of GNI", "IDRC as a share of GNI"],
     ] = pd.NA
 
+    _ = _.loc[lambda d: d.year <= 2023]
+
     _.to_csv(PATHS.output / f"idrc_oda_chart_{page}.csv", index=False)
 
 
 def update_oda() -> None:
     """Update the ODA data from the raw_data folder"""
     from oda_data import ODAData, set_data_path, download_dac1
-    set_data_path(PATHS.raw_data)
 
+    set_data_path(PATHS.raw_data)
 
     oda = ODAData(
         years=[2022],
