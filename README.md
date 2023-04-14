@@ -35,7 +35,7 @@ For a more detailed methodology, please see [here](https://docs.google.com/docum
 #### In-donor refugee costs
 Sourced from the [OECD DAC1 table](https://stats.oecd.org/Index.aspx?DataSetCode=Table1).
 
-We deflate these figures into constant 2021 prices for comparability across the four years.
+We deflate these figures into constant 2022 prices for comparability across the four years.
 
 #### Refugees
 Sourced from the [UNHCR Refugee Statistics Data Portal](https://www.unhcr.org/data.html). We include applications to 
