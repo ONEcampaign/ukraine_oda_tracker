@@ -5,7 +5,7 @@ Russia’s invasion of Ukraine has sparked the biggest war in Europe since WWII.
 It has cost thousands of lives, caused millions of people to flee Ukraine, 
 and has set off a global food crisis.
 
-The OECD reports that in-donor refugee costs alone amounted to $29bn in 2022. Our estimates predict a a further $32bn in 2023.
+The OECD reports that in-donor refugee costs alone amounted to $29bn in 2022. Our estimates predict a further $32bn in 2023.
 Other humanitarian and financial support committed to Ukraine will further drive up totals.
 The world will not be able to  meet the extraordinary needs from these compounding crises without
 increasing aid budgets significantly.
