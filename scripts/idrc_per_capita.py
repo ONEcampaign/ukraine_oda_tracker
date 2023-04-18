@@ -146,7 +146,7 @@ def yearly_constant_idrc() -> pd.DataFrame:
 
     return idrc.pipe(
         deflate,
-        base_year=2021,
+        base_year=2022,
         deflator_source="oecd_dac",
         deflator_method="dac_deflator",
         exchange_source="oecd_dac",
@@ -198,6 +198,13 @@ def update_refugee_cost_data() -> None:
     # Calculate the yearly spending on refugees
     summary = yearly_refugees_spending(
         cost_data=idrc_per_capita, refugee_data=ukraine_data
+    )
+
+    # Preliminary data for 2022
+    summary = (
+        summary.merge(idrc.query("year == 2022"), on=["iso_code"], how="left")
+        .assign(cost22=lambda d: d.value * 1e6)
+        .drop(["value", "year"], axis=1)
     )
 
     summary.to_csv(PATHS.output / "ukraine_refugee_cost_estimates.csv", index=False)
