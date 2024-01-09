@@ -308,6 +308,7 @@ def idrc_constant_wide() -> None:
         .rename(columns={"cost22": 2022, "cost23": 2023, "cost24": 2024})
         .melt(id_vars=["iso_code"], var_name="year", value_name="idrc")
         .assign(idrc=lambda d: d.idrc / 1e6)
+        .loc[lambda d: d.year > 2022]
     )
     idrc_hist = (
         read_idrc()
@@ -330,7 +331,7 @@ def idrc_constant_wide() -> None:
         target_column="idrc",
     )
 
-    idrc_latest = idrc_hist.query("year == 2022").drop("year", axis=1)
+    idrc_latest = idrc_hist.query("year == 2021").drop("year", axis=1)
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
