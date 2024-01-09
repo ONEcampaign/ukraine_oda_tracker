@@ -9,10 +9,16 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-UNHCR_URL: str = (
+OLD_UNHCR_URL: str = (
     "https://app.powerbi.com/view?r=eyJrIjoiNzkyMjdmN2QtMjdlNy00YT"
     "gyLWI5Y2UtMDMwM2RjZjI4MzY2IiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04"
     "YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
+)
+
+UNHCR_URL: str = (
+    "https://app.powerbi.com/view?r=eyJrIjoiMTk3ZGYyYjUtNzQwYi"
+    "00OWY2LWFlMzktNGFlZjNmMTNlOWY2IiwidCI6ImU1YzM3OTgxLTY2NjQtNDEz"
+    "NC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
 )
 
 
@@ -50,14 +56,39 @@ def _get_list_of_elements(driver: webdriver.chrome) -> list:
 
 
 def _get_neighbouring_df(elements_list: list) -> pd.DataFrame:
-    neighbouring = np.array(elements_list[0:48]).reshape(
-        int(len(elements_list[0:48]) / 6), 6
+    # response plan countries
+    start_index = elements_list.index("Country")
+    end_index = elements_list.index("Total")
+
+    response_table = elements_list[start_index:end_index]
+    response_table = np.array(response_table).reshape(int(len(response_table) / 6), 6)
+    response_df = pd.DataFrame(response_table[1:], columns=response_table[0:1][0])
+
+    elements_list = elements_list[end_index + 1 :]
+
+    # other neighbouring countries
+    start_index = elements_list.index("Country")
+    end_index = elements_list.index("Total")
+
+    other_table = elements_list[start_index:end_index]
+    other_table = np.array(other_table).reshape(int(len(other_table) / 6), 6)
+    other_df = pd.DataFrame(other_table[1:], columns=other_table[0:1][0])
+
+    elements_list = elements_list[end_index + 1 :]
+
+    # Other europe
+    start_index = elements_list.index("Country")
+    end_index = elements_list.index("Total")
+
+    other_europe_table = elements_list[start_index:end_index]
+    other_europe_table = np.array(other_europe_table).reshape(
+        int(len(other_europe_table) / 4), 4
+    )
+    other_europe_df = pd.DataFrame(
+        other_europe_table[1:], columns=other_europe_table[0:1][0]
     )
 
-    if neighbouring.shape != (8, 6):
-        raise ValueError("Shape of neighbouring data is not correct")
-
-    return pd.DataFrame(neighbouring[1:], columns=neighbouring[0:1][0])
+    return pd.concat([response_df, other_df, other_europe_df], ignore_index=True)
 
 
 def _get_other_df(elements_list: list) -> pd.DataFrame:
@@ -116,13 +147,7 @@ def get_unhcr_data() -> pd.DataFrame:
     elements_list = [str(item).replace("\n", "").strip() for item in elements_list]
 
     # Get neighbouring data
-    neighbouring_df = _get_neighbouring_df(elements_list)
-
-    # Get other data
-    other_df = _get_other_df(elements_list)
-
-    # Combine data
-    df = pd.concat([neighbouring_df, other_df], ignore_index=True)
+    df = _get_neighbouring_df(elements_list)
 
     # Close driver
     driver.quit()

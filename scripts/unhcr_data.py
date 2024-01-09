@@ -49,7 +49,7 @@ def clean_hrc_data(df: pd.DataFrame) -> pd.DataFrame:
                 "iso_code",
                 "Country",
                 "Data Date",
-                "Individual refugees from Ukraine recorded across Europe",
+                "Refugees from Ukraine recorded in country as of date",
             ],
             axis=1,
         )
@@ -70,7 +70,7 @@ def monthly_difference_by_country(df: pd.DataFrame) -> pd.DataFrame:
     """Calculate the difference in refugees from one month to the next
     for each country"""
 
-    column = "Individual refugees from Ukraine recorded across Europe"
+    column = "Refugees from Ukraine recorded in country as of date"
 
     df["difference"] = df.groupby(by="iso_code")[column].diff().fillna(df[column])
 
@@ -85,6 +85,7 @@ def add_yearly_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
     df["ratio22"] = df.month.apply(lambda x: 1 - ((x - 1) / 12))
     df["ratio23"] = 1 - df.ratio22
+    df["ratio24"] = 1 - df.ratio23
 
     # Correct the july 2022 ratio
     mask = (df["Data Date"].dt.year == 2022) & (df["Data Date"].dt.month == 7)
@@ -93,6 +94,9 @@ def add_yearly_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
     df.loc[df["Data Date"].dt.year > 2022, "ratio24"] = df["ratio23"]
     df.loc[df["Data Date"].dt.year > 2022, "ratio23"] = df["ratio22"]
+    df.loc[df["Data Date"].dt.year > 2023, "ratio24"] = df["ratio23"]
+    df.loc[df["Data Date"].dt.year > 2023, "ratio23"] = df["ratio22"]
+
     df.loc[df["Data Date"].dt.year > 2022, "ratio22"] = 0
 
     return df.fillna(0).drop(["month"], axis=1)
@@ -100,7 +104,7 @@ def add_yearly_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
 def clean_hcr_data_download(df: pd.DataFrame) -> pd.DataFrame:
     df["Data Date"] = pd.to_datetime(df["Data Date"])
-    return df.astype({"Individual refugees from Ukraine recorded across Europe": int})
+    return df.astype({"Refugees from Ukraine recorded in country as of date": int})
 
 
 def read_manual_ukraine_refugee_data() -> pd.DataFrame:
@@ -123,13 +127,32 @@ def update_ukraine_hcr_data() -> None:
     """Load and process HCR data"""
 
     # manual data
-    manual_data = read_manual_ukraine_refugee_data()
+    manual_data = read_manual_ukraine_refugee_data().rename(
+        columns={
+            "Individual refugees from Ukraine recorded across Europe": "Refugees from Ukraine recorded in country as of date"
+        }
+    )
 
     # Get the latest data from the UNHCR website and clean the data types
-    new_data = get_unhcr_data().pipe(clean_hcr_data_download)
+    new_data = (
+        get_unhcr_data()
+        .pipe(clean_hcr_data_download)
+        .rename(
+            columns={
+                "Individual refugees from Ukraine recorded across Europe": "Refugees from Ukraine recorded in country as of date"
+            }
+        )
+    )
 
     # Combine the new and historic data into a list
-    data_files = [load_historic_hcr_data(), new_data]
+    data_files = [
+        load_historic_hcr_data().rename(
+            columns={
+                "Individual refugees from Ukraine recorded across Europe": "Refugees from Ukraine recorded in country as of date"
+            }
+        ),
+        new_data,
+    ]
 
     # Run data through pipeline
     data = (
