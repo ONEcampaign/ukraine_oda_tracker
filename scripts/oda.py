@@ -60,7 +60,7 @@ def __export_df_page(
         ["Total ODA", "GNI", "ODA as a share of GNI", "IDRC as a share of GNI"],
     ] = pd.NA
 
-    _ = _.loc[lambda d: d.year <= 2023]
+    _ = _.loc[lambda d: d.year <= 2024]
 
     _.to_csv(PATHS.output / f"idrc_oda_chart_{page}.csv", index=False)
 
@@ -331,7 +331,7 @@ def idrc_constant_wide() -> None:
         target_column="idrc",
     )
 
-    idrc_latest = idrc_hist.query("year == 2021").drop("year", axis=1)
+    idrc_latest = idrc_hist.query("year == 2022").drop("year", axis=1)
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (

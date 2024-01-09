@@ -17,11 +17,11 @@ year,Donor,In-Donor Refugee Costs,Total ODA,GNI,IDRC as a share of GNI,ODA as a 
 2021,Slovakia,1.21,155.28,113338.35,0.001,0.14
 2021,Slovenia,2.33,116.19,60869.77,0.004,0.19
 2021,South Korea,,2872.51,1830320.2,0.0,0.16
-2022,Hungary,1.15,,,,
-2022,Lithuania,49.64,,,,
-2022,Poland,2181.11,,,,
+2022,Hungary,,,,,
+2022,Lithuania,74.08,,,,
+2022,Poland,2193.43,,,,
 2022,Slovakia,1.32,,,,
-2022,Slovenia,21.3,,,,
+2022,Slovenia,25.99,,,,
 2022,South Korea,10.8,,,,
 2023,Hungary,97.44239416666665,,,,
 2023,Lithuania,122.0236786,,,,
@@ -29,3 +29,9 @@ year,Donor,In-Donor Refugee Costs,Total ODA,GNI,IDRC as a share of GNI,ODA as a 
 2023,Slovakia,179.10255444999999,,,,
 2023,Slovenia,4.845718958333332,,,,
 2023,South Korea,,,,,
+2024,Hungary,2.7154102,,,,
+2024,Lithuania,5.430167325,,,,
+2024,Poland,25.560649825,,,,
+2024,Slovakia,7.7476426,,,,
+2024,Slovenia,,,,,
+2024,South Korea,,,,,
