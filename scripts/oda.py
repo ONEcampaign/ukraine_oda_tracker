@@ -56,7 +56,7 @@ def __export_df_page(
         )
     )
     _.loc[
-        lambda d: d.year >= 2022,
+        lambda d: d.year >= 2023,
         ["Total ODA", "GNI", "ODA as a share of GNI", "IDRC as a share of GNI"],
     ] = pd.NA
 
