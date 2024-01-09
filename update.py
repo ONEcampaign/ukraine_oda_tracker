@@ -54,4 +54,4 @@ def update_weekly():
 
 if __name__ == "__main__":
     update_daily()
-    # update_weekly()
+    update_weekly()

@@ -1,8 +1,12 @@
+import zipfile
+import io
+
 import country_converter as coco
 import pandas as pd
+import requests
 from pydeflate import set_pydeflate_path, deflate
 from bblocks.dataframe_tools.add import add_iso_codes_column, add_short_names_column
-from bblocks.import_tools.unzip import read_zipped_csv
+
 
 from scripts.config import PATHS
 from scripts.oda import read_idrc
@@ -12,6 +16,24 @@ set_pydeflate_path(PATHS.raw_data)
 HIGH_LOW = "high"
 YEAR_START = 2018
 YEAR_END = 2022
+
+
+def read_zipped_csv(url: str, filename: str) -> pd.DataFrame:
+    # Send a HTTP request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Open the ZIP file as a byte stream
+        with zipfile.ZipFile(io.BytesIO(response.content)) as z:
+            # Specify the name of the CSV file you want to read
+            with z.open(filename) as csvfile:
+                # Read the CSV file into a Pandas DataFrame
+                df = pd.read_csv(csvfile)
+
+        return df
+    else:
+        print("Failed to download the file")
 
 
 def update_unhcr_data(low_or_high: str) -> None:

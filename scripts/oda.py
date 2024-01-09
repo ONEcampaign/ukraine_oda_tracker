@@ -354,9 +354,11 @@ def idrc_constant_wide() -> None:
     ).drop("iso_code", axis=1)
 
     # Calculate dac total
-    dac_total = (idrc.groupby(["year"], as_index=False)["idrc"].sum()).assign(
-        donor_name="DAC Countries, Total"
-    )
+    dac_total = (
+        idrc.groupby(["year"], as_index=False, dropna=False, observed=True)[
+            "idrc"
+        ].sum()
+    ).assign(donor_name="DAC Countries, Total")
 
     # Merge with the original dataframe
     idrc_constant = (
