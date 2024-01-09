@@ -1,9 +1,9 @@
 import pandas as pd
 from bblocks.dataframe_tools.add import add_iso_codes_column
 from country_converter import country_converter
-from oda_data import ODAData, set_data_path, download_dac1
 from oda_data.tools.groupings import donor_groupings
 from pydeflate import deflate, set_pydeflate_path
+from oda_data import ODAData, set_data_path, download_dac1
 
 
 from scripts.config import PATHS
@@ -67,9 +67,8 @@ def __export_df_page(
 
 def update_oda() -> None:
     """Update the ODA data from the raw_data folder"""
-    from oda_data import ODAData, set_data_path, download_dac1
 
-    set_data_path(PATHS.raw_data)
+    download_dac1()
 
     oda = ODAData(
         years=[2022],
@@ -280,13 +279,13 @@ def idrc_as_share():
 
     # Merge the dataframes and create the share column
     df = (
-        idrc.merge(oda, on=["year", "donor_name"])
+        idrc.merge(oda, on=["year", "donor_name"], how="outer")
         .assign(share=lambda d: round(100 * d.idrc / d.total_oda, 5))
         .rename(columns={"donor_name": "Donor"})
     )
 
     dac = (
-        df.groupby(["year"], as_index=False)
+        df.groupby(["year"], as_index=False, dropna=False, observed=True)
         .sum(numeric_only=True)
         .drop("share", axis=1)
     )
