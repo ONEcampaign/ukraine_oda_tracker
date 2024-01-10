@@ -204,9 +204,7 @@ def idrc_oda_chart() -> None:
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
-        idrc_est.merge(
-            idrc_latest, on="iso_code", how="left", suffixes=("", "_latest")
-        )
+        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
         .assign(
             idrc=lambda d: d.apply(
                 lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1
@@ -337,9 +335,7 @@ def idrc_constant_wide() -> None:
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
-        idrc_est.merge(
-            idrc_latest, on="iso_code", how="left", suffixes=("", "_latest")
-        )
+        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
         .assign(
             idrc=lambda d: d.apply(
                 lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1
