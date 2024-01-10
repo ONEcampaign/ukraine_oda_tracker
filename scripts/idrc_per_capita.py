@@ -190,7 +190,7 @@ def per_capita_idrc(
         historical_refugees,
         on=["iso_code", "year"],
         suffixes=("_idrc", "_ref"),
-        how="outer",
+        how="inner",
     )
 
     # Filter and calculate per capita
