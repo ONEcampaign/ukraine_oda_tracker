@@ -68,7 +68,7 @@ def __export_df_page(
 def update_oda() -> None:
     """Update the ODA data from the raw_data folder"""
 
-    download_dac1()
+    # download_dac1()
 
     oda = ODAData(
         years=[2022],
@@ -132,7 +132,7 @@ def _raw_oda_data(indicator: str) -> pd.DataFrame:
 def _create_idrc_data() -> None:
     """Create the IDRC data export from DAC1 using oda_data"""
 
-    df = _raw_oda_data(indicator="idrc_flow").rename(columns={"value": "idrc"})
+    df = _raw_oda_data(indicator="idrc_ge_linked").rename(columns={"value": "idrc"})
 
     # Export the data
     df.to_csv(PATHS.raw_data / "total_idrc_current.csv", index=False)
@@ -204,7 +204,9 @@ def idrc_oda_chart() -> None:
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
-        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
+        idrc_est.merge(
+            idrc_latest, on="iso_code", how="outer", suffixes=("", "_latest")
+        )
         .assign(
             idrc=lambda d: d.apply(
                 lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1
@@ -335,7 +337,9 @@ def idrc_constant_wide() -> None:
 
     # Add the latest IDRC data to the estimated data
     idrc_est = (
-        idrc_est.merge(idrc_latest, on="iso_code", how="left", suffixes=("", "_latest"))
+        idrc_est.merge(
+            idrc_latest, on="iso_code", how="outer", suffixes=("", "_latest")
+        )
         .assign(
             idrc=lambda d: d.apply(
                 lambda x: x.idrc + x.idrc_latest if x.idrc > 1 else 0, axis=1

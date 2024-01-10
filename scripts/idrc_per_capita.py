@@ -187,7 +187,10 @@ def per_capita_idrc(
 
     # Combine the datasets
     df = reported_idrc_data.merge(
-        historical_refugees, on=["iso_code", "year"], suffixes=("_idrc", "_ref")
+        historical_refugees,
+        on=["iso_code", "year"],
+        suffixes=("_idrc", "_ref"),
+        how="outer",
     )
 
     # Filter and calculate per capita
