@@ -61,9 +61,13 @@ def clean_hrc_data(df: pd.DataFrame) -> pd.DataFrame:
 def filter_hrc_data_by_month(df: pd.DataFrame) -> pd.DataFrame:
     """Keep one observation per month per country"""
 
-    return df.groupby(
-        by=[df.Country, df["Data Date"].dt.month], as_index=False, sort=False
-    ).last()
+    # create year month column
+    df["date_month"] = df["Data Date"].dt.to_period("M")
+    df = df.sort_values(by=["iso_code", "date_month", "Data Date"]).drop_duplicates(
+        subset=["iso_code", "date_month"], keep="last"
+    )
+
+    return df
 
 
 def monthly_difference_by_country(df: pd.DataFrame) -> pd.DataFrame:
@@ -72,7 +76,13 @@ def monthly_difference_by_country(df: pd.DataFrame) -> pd.DataFrame:
 
     column = "Refugees from Ukraine recorded in country as of date"
 
-    df["difference"] = df.groupby(by="iso_code")[column].diff().fillna(df[column])
+    df = df.sort_values(by=["Data Date", "iso_code"])
+
+    df["difference"] = (
+        df.groupby(by="iso_code", dropna=False, observed=True)[column]
+        .diff()
+        .fillna(df[column])
+    )
 
     return df
 
@@ -148,7 +158,8 @@ def update_ukraine_hcr_data() -> None:
     data_files = [
         load_historic_hcr_data().rename(
             columns={
-                "Individual refugees from Ukraine recorded across Europe": "Refugees from Ukraine recorded in country as of date"
+                "Individual refugees from Ukraine recorded across Europe": "Refugees "
+                "from Ukraine recorded in country as of date"
             }
         ),
         new_data,
