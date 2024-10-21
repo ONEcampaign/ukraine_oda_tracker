@@ -18,10 +18,11 @@ year,indicator,donor_code,donor_name,currency,prices,value
 2022,total_oda_ge,40,Greece,USD,current,360.44
 2022,total_oda_ge,50,Spain,USD,current,4275.53
 2022,total_oda_ge,61,Slovenia,USD,current,168.71
-2022,total_oda_ge,68,Czech Republic,USD,current,1051.26
+2022,total_oda_ge,68,Czechia,USD,current,1051.26
 2022,total_oda_ge,69,Slovak Republic,USD,current,171.88
 2022,total_oda_ge,75,Hungary,USD,current,371.28
 2022,total_oda_ge,76,Poland,USD,current,3496.23
+2022,total_oda_ge,82,Estonia,USD,current,200.93
 2022,total_oda_ge,84,Lithuania,USD,current,243.26
 2022,total_oda_ge,301,Canada,USD,current,7835.68
 2022,total_oda_ge,302,United States,USD,current,60522.41
